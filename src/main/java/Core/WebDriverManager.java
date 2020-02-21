@@ -1,10 +1,13 @@
 package Core;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
 
 public class WebDriverManager {
     private WebDriver webDriver;
+    private WebDriverWait webDriverWait;
     private static WebDriverManager instance;
 
     private WebDriverManager() {
@@ -19,7 +22,12 @@ public class WebDriverManager {
     }
 
     private void initialize() {
-        this.webDriver = new ChromeDriver();
+        // Leer del gradle.properties con que browsere va a correr
+        // Striing browser
+        this.webDriver = WebDriverFactory.getWebDriver("chrome");
+        this.webDriver.manage().window().maximize();
+        webDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        webDriverWait = new WebDriverWait(webDriver, 40);
     }
 
     public WebDriver getWebDriver() {
@@ -29,5 +37,9 @@ public class WebDriverManager {
     public void quitDriver() {
         webDriver.quit();
         webDriver = null;
+    }
+
+    public WebDriverWait getWebDriverWait() {
+        return webDriverWait;
     }
 }
