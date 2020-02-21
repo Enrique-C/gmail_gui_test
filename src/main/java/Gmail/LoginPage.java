@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class LoginPage {
+public class LoginPage extends BasePage{
     final String BASE_URI = "https://www.google.com/gmail/";
     private WebDriver driver;
     private WebElement identifierId;
