@@ -22,9 +22,9 @@ public class WebDriverManager {
     }
 
     private void initialize() {
-        // Leer del gradle.properties con que browsere va a correr
-        // Striing browser
-        this.webDriver = WebDriverFactory.getWebDriver("firefox");
+        PropertiesManager properties = new PropertiesManager();
+        String browser = properties.getBrowser();
+        this.webDriver = WebDriverFactory.getWebDriver(browser);
         this.webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         webDriverWait = new WebDriverWait(webDriver, 40);
