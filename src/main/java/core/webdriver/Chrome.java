@@ -7,8 +7,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import static io.github.bonigarcia.wdm.DriverManagerType.CHROME;
 
-public class Chrome implements IDriver {
-
+public class Chrome implements IDriver{
     @Override
     public WebDriver initDriver() {
         ChromeDriverManager.getInstance(CHROME).version("80.0.3987.16").setup();

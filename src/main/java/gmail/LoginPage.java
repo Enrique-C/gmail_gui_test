@@ -6,12 +6,21 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage {
-    final String BASE_URI = "https://www.google.com/gmail/";
-    private WebElement identifierId;
-    private WebElement identifierNext;
+    final String BASE_URI = "https://trello.com/es";
 
-    @FindBy(name = "password")
+    @FindBy(css = ".btn-link")
+    private WebElement btn_logIn;
+
+    @FindBy(id = "user")
+    private WebElement txb_email;
+
+    @FindBy(id = "password")
     private WebElement txb_password;
+
+
+    @FindBy(id = "login")
+    private WebElement btn_logInAccount;
+
 
     @Override
     protected void waitUntilPageObjectIsLoaded() {
@@ -21,13 +30,15 @@ public class LoginPage extends BasePage {
     public LoginPage() {
     }
 
-
-    public void login(String email, String password) {
+    public HomePage login(String email, String password) {
         webDriver.get(BASE_URI);
-        identifierId.sendKeys(email);
-        identifierNext.click();
-        webDriverWait.until(ExpectedConditions.visibilityOf(txb_password));
+        webDriverWait.until(ExpectedConditions.visibilityOf(btn_logIn));
+        btn_logIn.click();
+        txb_email.sendKeys(email);
         txb_password.sendKeys(password);
-        WebDriverManager.getInstance().quitDriver();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btn_logInAccount));
+        btn_logInAccount.click();
+
+        return new HomePage();
     }
 }
