@@ -4,10 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.time.Duration;
-
-public class CloseBoardPage extends BasePage {
-
+public class DeleteBoardPage extends BasePage{
     @Override
     protected void waitUntilPageObjectIsLoaded() {
         webDriverWait.until(ExpectedConditions.visibilityOf(h1_title));
@@ -16,15 +13,11 @@ public class CloseBoardPage extends BasePage {
     @FindBy(css = "h1:nth-child(1)")
     private WebElement h1_title;
 
-    @FindBy(css = "a.quiet")
-    private WebElement link_deleteBoard;
+    @FindBy(css = ".little-message")
+    private WebElement message;
 
-    public String getH1_title() {
+    public String getH1_title(){
+        webDriverWait.until(ExpectedConditions.visibilityOf(message));
         return h1_title.getText();
-    }
-
-    public DeleteBoardPopup delete() {
-        link_deleteBoard.click();
-        return new DeleteBoardPopup();
     }
 }

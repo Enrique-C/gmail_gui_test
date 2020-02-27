@@ -24,7 +24,6 @@ public class BoardPage extends BasePage {
     private WebElement btn_butler;
 
 
-
     public WebElement getSpam_boardTitle() {
         return spam_boardTitle;
     }

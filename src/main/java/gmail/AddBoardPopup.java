@@ -10,18 +10,18 @@ public class AddBoardPopup extends BasePage {
     private WebElement txb_boardTitle;
 
     @FindBy(css = ".\\_3UeOvlU6B5KUnS")
-    private WebElement btn_boardCreate;
+    private WebElement btn_createBoard;
 
     @Override
     protected void waitUntilPageObjectIsLoaded() {
 
     }
 
-    public BoardPage createBoard(String boardTitle) {
+    public BoardPage create(String boardTitle) {
         webDriverWait.until(ExpectedConditions.visibilityOf(txb_boardTitle));
         txb_boardTitle.sendKeys(boardTitle);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(btn_boardCreate));
-        btn_boardCreate.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btn_createBoard));
+        btn_createBoard.click();
 
         return new BoardPage();
     }

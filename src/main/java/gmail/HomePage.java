@@ -6,6 +6,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends BasePage {
 
+    @Override
+    protected void waitUntilPageObjectIsLoaded() {
+    }
+
     @FindBy(css = "button._2ZNy4w8Nfa58d1:nth-child(5)")
     private WebElement btn_profile;
 
@@ -15,9 +19,11 @@ public class HomePage extends BasePage {
     @FindBy(css = ".\\_2DBw9GxD3tha0R")
     private WebElement btn_newBoard;
 
-    @Override
-    protected void waitUntilPageObjectIsLoaded() {
-    }
+    @FindBy(css = "li:nth-child(2) .\\_2DBw9GxD3tha0R")
+    private WebElement btn_newOrganization;
+
+    @FindBy(css = ".boards-page-board-section-list-item:nth-child(1)")
+    private WebElement board_random;
 
     public WebElement getBtn_profile() {
         return btn_profile;
@@ -26,9 +32,24 @@ public class HomePage extends BasePage {
     public AddBoardPopup displayBoardPopup() {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btnBar_plus));
         btnBar_plus.click();
-//        webDriverWait.until(ExpectedConditions.elementToBeClickable(btn_newBoard));
         btn_newBoard.click();
 
         return new AddBoardPopup();
+    }
+
+    public AddOrganizationPopup displayOrganizationPopup() {
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnBar_plus));
+        btnBar_plus.click();
+        webDriverWait.until(ExpectedConditions.visibilityOf(btn_newOrganization));
+        btn_newOrganization.click();
+
+        return new AddOrganizationPopup();
+    }
+
+    public BoardPage openBoardRandom(){
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(board_random));
+        board_random.click();
+
+        return new BoardPage();
     }
 }

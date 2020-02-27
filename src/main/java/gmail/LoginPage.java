@@ -6,6 +6,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage {
+
+    @Override
+    protected void waitUntilPageObjectIsLoaded() {
+
+    }
+
     final String BASE_URI = "https://trello.com/es";
 
     @FindBy(css = ".btn-link")
@@ -20,15 +26,6 @@ public class LoginPage extends BasePage {
 
     @FindBy(id = "login")
     private WebElement btn_logInAccount;
-
-
-    @Override
-    protected void waitUntilPageObjectIsLoaded() {
-
-    }
-
-    public LoginPage() {
-    }
 
     public HomePage login(String email, String password) {
         webDriver.get(BASE_URI);
