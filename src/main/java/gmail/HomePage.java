@@ -6,11 +6,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends BasePage {
 
-    @Override
-    protected void waitUntilPageObjectIsLoaded() {
-
-    }
-
     @FindBy(css = "button._2ZNy4w8Nfa58d1:nth-child(5)")
     private WebElement btn_profile;
 
@@ -20,6 +15,10 @@ public class HomePage extends BasePage {
     @FindBy(css = ".\\_2DBw9GxD3tha0R")
     private WebElement btn_newBoard;
 
+    @Override
+    protected void waitUntilPageObjectIsLoaded() {
+    }
+
     public WebElement getBtn_profile() {
         return btn_profile;
     }
@@ -27,7 +26,7 @@ public class HomePage extends BasePage {
     public AddBoardPopup displayBoardPopup() {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btnBar_plus));
         btnBar_plus.click();
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(btn_newBoard));
+//        webDriverWait.until(ExpectedConditions.elementToBeClickable(btn_newBoard));
         btn_newBoard.click();
 
         return new AddBoardPopup();
