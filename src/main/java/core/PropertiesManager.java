@@ -15,8 +15,8 @@ public class PropertiesManager {
     // InputStream type variable.
     private InputStream inputPath;
 
-    // Constant variable to get application.properties file.
-    private static final String APPLICATION_PROPERTIES = "application.properties";
+    // Constant variable to get gradle.properties file.
+    private static final String APPLICATION_PROPERTIES = "gradle.properties";
 
     /**
      * Initializes properties and inputPath. Also load the inputPath in properties.

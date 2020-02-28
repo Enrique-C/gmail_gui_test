@@ -27,6 +27,23 @@ public class OrganizationTest {
 
         String actualResult = organizationPage.getText_pageTitle();
 
-        Assert.assertEquals(ORGANIZATION_NAME,actualResult);
+        Assert.assertEquals(ORGANIZATION_NAME, actualResult);
+    }
+
+    @Test
+    public void deleteOrganization_NameTestOrganization_TestOrganization() {
+        final String ORGANIZATION_NAME = "Test organizarion";
+        final String ORGANIZATION_DESCRIPTION = "This is an description";
+
+        LoginPage loginPage = new LoginPage();
+        HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
+
+        AddOrganizationPopup addOrganizationPopup = homePage.displayOrganizationPopup();
+        OrganizationPage organizationPage = addOrganizationPopup.create(ORGANIZATION_NAME, ORGANIZATION_DESCRIPTION);
+        HomePage homePage1 = organizationPage.delete();
+
+        String actualResult = homePage1.getTextTag_organization();
+
+        Assert.assertNotNull(actualResult);//REVIEW THIS ASSERTION AGAIN
     }
 }

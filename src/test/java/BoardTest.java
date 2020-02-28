@@ -31,12 +31,18 @@ public class BoardTest {
         String actualResult = boardPage.getSpam_boardTitle().getText();
 
         Assert.assertEquals(BOARD_TITLE, actualResult);
+
+        CloseBoardPopup closeBoardPopup = boardPage.close();
+        CloseBoardPage closeBoardPage = closeBoardPopup.confirm();
+
+        DeleteBoardPopup deleteBoardPopup = closeBoardPage.delete();
+        deleteBoardPopup.confirm();
     }
 
     @Test
     public void closeABoard_TitleAsMyBoard_MyBoard() {
         final String BOARD_TITLE = "My Board";
-        final String PAGE_TITLE = BOARD_TITLE + " está cerrado";
+        final String CLOSE_BOARD_MESSAGE = BOARD_TITLE + " está cerrado.";
 
         LoginPage loginPage = new LoginPage();
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
@@ -46,12 +52,9 @@ public class BoardTest {
 
         CloseBoardPopup closeBoardPopup = boardPage.close();
         CloseBoardPage closeBoardPage = closeBoardPopup.confirm();
-
         String message = closeBoardPage.getH1_title();
 
-        boolean actualResult = message.matches(PAGE_TITLE + "(.*)");
-
-        Assert.assertTrue(actualResult);
+        Assert.assertEquals(CLOSE_BOARD_MESSAGE, message);
     }
 
     @Test
@@ -77,12 +80,12 @@ public class BoardTest {
     }
 
     @Test
-    public void thanos() {
+    public void darkHole() {
         LoginPage loginPage = new LoginPage();
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
 
         while (true){
-            BoardPage boardPage= homePage.openBoardRandom();
+            BoardPage boardPage= homePage.openFirstBoard();
 
             CloseBoardPopup closeBoardPopup = boardPage.close();
             CloseBoardPage closeBoardPage = closeBoardPopup.confirm();

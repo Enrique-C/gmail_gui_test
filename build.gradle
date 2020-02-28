@@ -7,6 +7,10 @@ version '1.0-SNAPSHOT'
 
 compileJava.options.encoding = 'UTF-8'
 
+tasks.withType(Test) {
+    systemProperty "browser", browser
+}
+
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }

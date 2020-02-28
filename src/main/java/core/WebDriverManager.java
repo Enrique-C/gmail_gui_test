@@ -22,8 +22,7 @@ public class WebDriverManager {
     }
 
     private void initialize() {
-        PropertiesManager properties = new PropertiesManager();
-        String browser = properties.getBrowser();
+        String browser = System.getProperty("browser");
         this.webDriver = WebDriverFactory.getWebDriver(browser);
         this.webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);

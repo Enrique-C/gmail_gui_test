@@ -14,8 +14,7 @@ public class WebDriverFactory {
         Map<String, IDriver> map = new HashMap<>();
         map.put("chrome", new Chrome());
         map.put("firefox", new Firefox());
+
         return map.get(browser).initDriver();
-//        WebDriver webDriver = new ChromeDriver();
-//        return webDriver;
     }
 }

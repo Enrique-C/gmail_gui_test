@@ -25,8 +25,16 @@ public class HomePage extends BasePage {
     @FindBy(css = ".boards-page-board-section-list-item:nth-child(1)")
     private WebElement board_random;
 
+    @FindBy(css = "._33CvMKqfH4Yf0j")
+    private WebElement textTag_organization;
+
     public WebElement getBtn_profile() {
         return btn_profile;
+    }
+
+    public String getTextTag_organization() {
+        webDriverWait.until(ExpectedConditions.visibilityOf(textTag_organization));
+        return textTag_organization.getText();
     }
 
     public AddBoardPopup displayBoardPopup() {
@@ -46,7 +54,7 @@ public class HomePage extends BasePage {
         return new AddOrganizationPopup();
     }
 
-    public BoardPage openBoardRandom(){
+    public BoardPage openFirstBoard(){
         webDriverWait.until(ExpectedConditions.elementToBeClickable(board_random));
         board_random.click();
 
