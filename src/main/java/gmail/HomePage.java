@@ -10,7 +10,7 @@ public class HomePage extends BasePage {
     protected void waitUntilPageObjectIsLoaded() {
     }
 
-    @FindBy(css = "button._2ZNy4w8Nfa58d1:nth-child(5)")
+    @FindBy(css = "span._24AWINHReYjNBf") //button._2ZNy4w8Nfa58d1:nth-child(5)
     private WebElement btn_profile;
 
     @FindBy(css = ".\\_3r1LXvjBp8zfAv")
@@ -28,8 +28,18 @@ public class HomePage extends BasePage {
     @FindBy(css = "._33CvMKqfH4Yf0j")
     private WebElement textTag_organization;
 
+    @FindBy(css = "input._1CyMivLdH2a8dA")
+    private WebElement txb_search;
+
     public WebElement getBtn_profile() {
         return btn_profile;
+    }
+
+    public SearchPopup search(String nameElement) {
+        webDriverWait.until(ExpectedConditions.visibilityOf(txb_search));
+        txb_search.sendKeys(nameElement);
+
+        return new SearchPopup();
     }
 
     public String getTextTag_organization() {
@@ -54,7 +64,7 @@ public class HomePage extends BasePage {
         return new AddOrganizationPopup();
     }
 
-    public BoardPage openFirstBoard(){
+    public BoardPage openFirstBoard() {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(board_random));
         board_random.click();
 

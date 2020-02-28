@@ -91,7 +91,7 @@ public class BoardTest {
             CloseBoardPage closeBoardPage = closeBoardPopup.confirm();
 
             DeleteBoardPopup deleteBoardPopup = closeBoardPage.delete();
-            DeleteBoardPage deleteBoardPage = deleteBoardPopup.confirm();
+            deleteBoardPopup.confirm();
             WebDriverManager.getInstance().getWebDriver().get("https://trello.com/enriquecarrizales1/boards");
         }
     }

@@ -3,6 +3,7 @@ import gmail.AddOrganizationPopup;
 import gmail.HomePage;
 import gmail.LoginPage;
 import gmail.OrganizationPage;
+import gmail.SearchPopup;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -34,6 +35,7 @@ public class OrganizationTest {
     public void deleteOrganization_NameTestOrganization_TestOrganization() {
         final String ORGANIZATION_NAME = "Test organizarion";
         final String ORGANIZATION_DESCRIPTION = "This is an description";
+        final String EXPECTED_MESSAGE = "No se han encontrado tarjetas ni tableros que coincidan con su búsqueda.";
 
         LoginPage loginPage = new LoginPage();
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
@@ -41,9 +43,9 @@ public class OrganizationTest {
         AddOrganizationPopup addOrganizationPopup = homePage.displayOrganizationPopup();
         OrganizationPage organizationPage = addOrganizationPopup.create(ORGANIZATION_NAME, ORGANIZATION_DESCRIPTION);
         HomePage homePage1 = organizationPage.delete();
+        SearchPopup searchPopup = homePage1.search(ORGANIZATION_NAME); // it DOESN'T WORK
+        String actualResult = searchPopup.getMessageSearchResult();
 
-        String actualResult = homePage1.getTextTag_organization();
-
-        Assert.assertNotNull(actualResult);//REVIEW THIS ASSERTION AGAIN
+        Assert.assertEquals(EXPECTED_MESSAGE, actualResult);
     }
 }
