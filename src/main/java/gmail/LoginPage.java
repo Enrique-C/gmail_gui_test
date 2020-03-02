@@ -28,7 +28,7 @@ public class LoginPage extends BasePage {
 
     public HomePage login(String email, String password) {
         webDriver.get(BASE_URI);
-        webDriverWait.until(ExpectedConditions.visibilityOf(btn_logIn));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btn_logIn));
         btn_logIn.click();
         txb_email.sendKeys(email);
         txb_password.sendKeys(password);

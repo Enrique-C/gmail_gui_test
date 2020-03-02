@@ -10,7 +10,7 @@ public class DeleteBoardPage extends BasePage{
         webDriverWait.until(ExpectedConditions.visibilityOf(h1_title));
     }
 
-    @FindBy(css = "h1:nth-child(1)")
+    @FindBy(css = "h1")
     private WebElement h1_title;
 
     @FindBy(css = ".little-message")

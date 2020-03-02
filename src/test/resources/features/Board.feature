@@ -8,16 +8,18 @@ Feature: Board
     And I close Board
     And I delete Board
 
-  @clean
-  Scenario: Close a Board
-    Given I login to the application with user credentials
-    And I create a Board with name "Test Board"
-    When I close Board
-    Then The application should displays a close board message "My Board está cerrado"
-
-  @clean
-  Scenario: Delete a Board
-    Given I login to the application with user credentials
-    And I create a Board with name "Test Board"
-    When I delete Board
-    Then The application should displays a delete board message "Tablero no encontrado."
+#  @clean
+#  Scenario: Close a Board
+#    Given I login to the application with user credentials
+#    And I create a Board with name "Test Board"
+#    When I close Board
+#    Then The application should displays a close board message "Test Board está cerrado."
+#    And I delete Board
+#
+#  @clean
+#  Scenario: Delete a Board
+#    Given I login to the application with user credentials
+#    And I create a Board with name "Test Board"
+#    When I close Board
+#    And I delete Board
+#    Then The application should displays a delete board message "Tablero no encontrado."

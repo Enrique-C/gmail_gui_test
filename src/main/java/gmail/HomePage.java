@@ -47,14 +47,10 @@ public class HomePage extends BasePage {
         return new SearchPopup();
     }
 
-    public String getTextTag_organization() {
-        webDriverWait.until(ExpectedConditions.visibilityOf(textTag_organization));
-        return textTag_organization.getText();
-    }
-
     public AddBoardPopup displayBoardPopup() {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btnBar_plus));
         btnBar_plus.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btn_newBoard));
         btn_newBoard.click();
 
         return new AddBoardPopup();

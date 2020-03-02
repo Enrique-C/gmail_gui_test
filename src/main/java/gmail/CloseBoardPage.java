@@ -13,7 +13,7 @@ public class CloseBoardPage extends BasePage {
         webDriverWait.until(ExpectedConditions.visibilityOf(h1_title));
     }
 
-    @FindBy(css = "h1")//h1:nth-child(1) //p[@text()=’ SIGN UP’]
+    @FindBy(css = "h1")
     private WebElement h1_title;
 
     @FindBy(css = "a.quiet")

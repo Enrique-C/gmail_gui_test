@@ -1,5 +1,6 @@
 package steps;
 
+import core.WebDriverManager;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -11,6 +12,7 @@ import gmail.DeleteBoardPage;
 import gmail.DeleteBoardPopup;
 import gmail.HomePage;
 import gmail.LoginPage;
+import org.junit.After;
 import org.junit.Assert;
 
 public class MyStepdefs {
@@ -60,11 +62,18 @@ public class MyStepdefs {
     public void deleteBoard() {
         deleteBoardPopup = closeBoardPage.delete();
         deleteBoardPage = deleteBoardPopup.confirm();
+
+        WebDriverManager.getInstance().quitDriver();//REVIEW
     }
 
     @Then("^The application should displays a delete board message \"([^\"]*)\"$")
     public void displaysADeleteBoardMessage(String deleteMessage) {
         String actualResult = deleteBoardPage.getH1_title();
         Assert.assertEquals(deleteMessage, actualResult);
+    }
+
+    @After
+    public void closeBrowser(){
+        WebDriverManager.getInstance().quitDriver();
     }
 }

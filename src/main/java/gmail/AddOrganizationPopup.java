@@ -12,7 +12,6 @@ public class AddOrganizationPopup extends BasePage {
     }
 
     @FindBy(css = "input._1CLyNodCAa-vQi")
-    //#\31 582840706832-create-team-org-display-name
     private WebElement txb_organizationName;
 
     @FindBy(css = "textarea._15aIJYNKhrO4vB")
