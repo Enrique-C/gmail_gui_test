@@ -10,7 +10,7 @@ public class MyStepdefs {
     }
 
     @When("^I create a Board with name \"([^\"]*)\"$")
-    public void iCreateABoardWithName(String arg0) {
+    public void CreateABoardWithName(String arg0) {
         // Write code here that turns the phrase above into concrete actions
     }
 
@@ -20,7 +20,7 @@ public class MyStepdefs {
     }
 
     @When("^I close the Board \"([^\"]*)\"$")
-    public void iCloseTheBoard(String arg0) {
+    public void closeTheBoard(String arg0) {
         // Write code here that turns the phrase above into concrete actions
     }
 

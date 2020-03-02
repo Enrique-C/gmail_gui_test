@@ -10,7 +10,7 @@ public class DeleteBoardPopup extends BasePage {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btn_delete));
     }
 
-    @FindBy(css = "input.js-confirm full negate")
+    @FindBy(css = "input[value = Eliminar]")
     private WebElement btn_delete;
 
     public DeleteBoardPage confirm() {

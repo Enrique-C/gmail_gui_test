@@ -31,13 +31,18 @@ public class HomePage extends BasePage {
     @FindBy(css = "input._1CyMivLdH2a8dA")
     private WebElement txb_search;
 
+    @FindBy(css = "span[name = external-link]")
+    private WebElement btn_search;
+
     public WebElement getBtn_profile() {
         return btn_profile;
     }
 
     public SearchPopup search(String nameElement) {
-        webDriverWait.until(ExpectedConditions.visibilityOf(txb_search));
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElements(txb_search));
         txb_search.sendKeys(nameElement);
+        webDriverWait.until(ExpectedConditions.attributeContains(txb_search, "value", nameElement));
+        btn_search.click();
 
         return new SearchPopup();
     }
