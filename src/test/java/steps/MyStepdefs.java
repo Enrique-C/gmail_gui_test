@@ -1,6 +1,7 @@
 package steps;
 
 import core.WebDriverManager;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -27,7 +28,7 @@ public class MyStepdefs {
     DeleteBoardPage deleteBoardPage;
 
 
-    @Given("^I login to the application with user credentials$")
+    @Given("^I login to the application with user \"([^\"]*)\" credentials$")
     public void loginToTheApplicationWithUserCredentials() {
         loginPage = new LoginPage();
         homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
@@ -73,7 +74,7 @@ public class MyStepdefs {
     }
 
     @After
-    public void closeBrowser(){
+    public void closeBrowser() {
         WebDriverManager.getInstance().quitDriver();
     }
 }
