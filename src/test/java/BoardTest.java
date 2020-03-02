@@ -41,14 +41,14 @@ public class BoardTest {
 
     @Test
     public void closeABoard_TitleAsMyBoard_MyBoard() {
-        final String BOARD_TITLE = "My Board";
-        final String CLOSE_BOARD_MESSAGE = BOARD_TITLE + " está cerrado.";
+        final String BOARD_NAME = "My Board";
+        final String CLOSE_BOARD_MESSAGE = BOARD_NAME + " está cerrado.";
 
         LoginPage loginPage = new LoginPage();
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
 
         AddBoardPopup addBoardPopup = homePage.displayBoardPopup();
-        BoardPage boardPage= addBoardPopup.create(BOARD_TITLE);
+        BoardPage boardPage= addBoardPopup.create(BOARD_NAME);
 
         CloseBoardPopup closeBoardPopup = boardPage.close();
         CloseBoardPage closeBoardPage = closeBoardPopup.confirm();
