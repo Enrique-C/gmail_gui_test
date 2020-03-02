@@ -29,7 +29,7 @@ public class MyStepdefs {
 
 
     @Given("^I login to the application with user \"([^\"]*)\" credentials$")
-    public void loginToTheApplicationWithUserCredentials() {
+    public void loginToTheApplicationWithUserCredentials(String typeUser) {
         loginPage = new LoginPage();
         homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
     }
