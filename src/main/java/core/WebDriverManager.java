@@ -2,7 +2,9 @@ package core;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import util.GradleReader;
 
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class WebDriverManager {
@@ -22,10 +24,10 @@ public class WebDriverManager {
     }
 
     private void initialize() {
-        String browser = System.getProperty("browser");
+        String browser = GradleReader.readBrowser();
         this.webDriver = WebDriverFactory.getWebDriver(browser);
         this.webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        this.webDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         webDriverWait = new WebDriverWait(webDriver, 40);
     }
 

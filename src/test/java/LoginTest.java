@@ -24,6 +24,4 @@ public class LoginTest {
 
         assertTrue(actualResult);
     }
-
-
 }
