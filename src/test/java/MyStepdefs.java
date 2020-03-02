@@ -1,3 +1,4 @@
+import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -11,6 +12,7 @@ import gmail.DeleteBoardPopup;
 import gmail.HomePage;
 import gmail.LoginPage;
 import org.junit.Assert;
+import org.junit.runner.RunWith;
 
 public class MyStepdefs {
     LoginPage loginPage;
@@ -21,6 +23,7 @@ public class MyStepdefs {
     CloseBoardPage closeBoardPage;
     DeleteBoardPopup deleteBoardPopup;
     DeleteBoardPage deleteBoardPage;
+
 
     @Given("^I login to the application with user credentials$")
     public void loginToTheApplicationWithUserCredentials() throws Throwable{
