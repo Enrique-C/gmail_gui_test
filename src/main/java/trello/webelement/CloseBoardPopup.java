@@ -1,10 +1,12 @@
-package gmail;
+package trello.webelement;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import trello.page.BasePage;
+import trello.page.CloseBoardPage;
 
-public class CloseBoardPopup extends BasePage{
+public class CloseBoardPopup extends BasePage {
 
     @Override
     protected void waitUntilPageObjectIsLoaded() {

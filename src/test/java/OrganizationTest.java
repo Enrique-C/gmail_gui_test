@@ -1,9 +1,9 @@
 import core.WebDriverManager;
-import gmail.AddOrganizationPopup;
-import gmail.HomePage;
-import gmail.LoginPage;
-import gmail.OrganizationPage;
-import gmail.SearchPopup;
+import trello.webelement.AddOrganizationPopup;
+import trello.page.HomePage;
+import trello.page.LoginPage;
+import trello.page.OrganizationPage;
+import trello.webelement.SearchPopup;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;

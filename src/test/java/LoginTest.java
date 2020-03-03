@@ -1,6 +1,6 @@
 import core.WebDriverManager;
-import gmail.HomePage;
-import gmail.LoginPage;
+import trello.page.HomePage;
+import trello.page.LoginPage;
 import org.junit.After;
 import org.junit.Test;
 

@@ -13,4 +13,4 @@ Feature: Organization
       | name        | Test Organization     |
       | description | This is a description |
     When I delete Organization
-    Then The application should displays the home page
+    Then I search the Organization and message "No se han encontrado tarjetas ni tableros que coincidan con su búsqueda." is displayed

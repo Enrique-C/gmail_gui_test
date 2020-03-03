@@ -1,8 +1,11 @@
-package gmail;
+package trello.page;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import trello.webelement.AddBoardPopup;
+import trello.webelement.AddOrganizationPopup;
+import trello.webelement.SearchPopup;
 
 public class HomePage extends BasePage {
 

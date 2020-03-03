@@ -1,19 +1,17 @@
 package steps;
 
-import core.WebDriverManager;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import gmail.AddBoardPopup;
-import gmail.BoardPage;
-import gmail.CloseBoardPage;
-import gmail.CloseBoardPopup;
-import gmail.DeleteBoardPage;
-import gmail.DeleteBoardPopup;
-import gmail.HomePage;
-import gmail.LoginPage;
-import org.junit.After;
+import trello.webelement.AddBoardPopup;
+import trello.page.BoardPage;
+import trello.page.CloseBoardPage;
+import trello.webelement.CloseBoardPopup;
+import trello.page.DeleteBoardPage;
+import trello.webelement.DeleteBoardPopup;
+import trello.page.HomePage;
+import trello.page.LoginPage;
 import org.junit.Assert;
 
 public class MyStepdefs {
@@ -28,7 +26,7 @@ public class MyStepdefs {
     DeleteBoardPage deleteBoardPage;
 
 
-    @Given("^I login to the application with user \"([^\"]*)\" credentials$")
+    @Given("^I login to the application with \"([^\"]*)\" user credentials$")
     public void loginToTheApplicationWithUserCredentials(String typeUser) {
         loginPage = new LoginPage();
         homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
@@ -63,8 +61,6 @@ public class MyStepdefs {
     public void deleteBoard() {
         deleteBoardPopup = closeBoardPage.delete();
         deleteBoardPage = deleteBoardPopup.confirm();
-
-//        WebDriverManager.getInstance().quitDriver();//REVIEW
     }
 
     @Then("^The application should displays a delete board message \"([^\"]*)\"$")
@@ -73,8 +69,25 @@ public class MyStepdefs {
         Assert.assertEquals(deleteMessage, actualResult);
     }
 
-    @After
-    public void closeBrowser() {
-        WebDriverManager.getInstance().quitDriver();
+    @When("^I create a Organization with$")
+    public void createAOrganizationWith() {
+
+    }
+
+    @Then("^The application should displays a page with name Organization \"([^\"]*)\"$")
+    public void theApplicationShouldDisplaysAPageWithNameOrganization(String arg0) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @When("^I delete Organization$")
+    public void iDeleteOrganization() {
+
+    }
+
+    @Then("^I search the Organization and message \"([^\"]*)\" is displayed$")
+    public void iSearchTheOrganizationAndMessageIsDisplayed(String arg0) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
     }
 }

@@ -1,4 +1,4 @@
-package gmail;
+package trello.page;
 
 import core.WebDriverManager;
 import org.openqa.selenium.WebDriver;

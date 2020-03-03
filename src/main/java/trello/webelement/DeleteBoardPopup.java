@@ -1,8 +1,10 @@
-package gmail;
+package trello.webelement;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import trello.page.BasePage;
+import trello.page.DeleteBoardPage;
 
 public class DeleteBoardPopup extends BasePage {
     @Override
