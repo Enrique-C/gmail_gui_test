@@ -3,6 +3,7 @@ package trello.webelement;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import trello.entity.Board;
 import trello.page.BasePage;
 import trello.page.BoardPage;
 
@@ -19,9 +20,9 @@ public class AddBoardPopup extends BasePage {
 
     }
 
-    public BoardPage create(String boardTitle) {
+    public BoardPage create(Board board) {
         webDriverWait.until(ExpectedConditions.visibilityOf(txb_boardTitle));
-        txb_boardTitle.sendKeys(boardTitle);
+        txb_boardTitle.sendKeys(board.getName());
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btn_createBoard));
         btn_createBoard.click();
 

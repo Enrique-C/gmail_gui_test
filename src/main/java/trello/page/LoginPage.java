@@ -3,6 +3,7 @@ package trello.page;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import trello.PageTransporter;
 
 public class LoginPage extends BasePage {
 
@@ -10,8 +11,6 @@ public class LoginPage extends BasePage {
     protected void waitUntilPageObjectIsLoaded() {
 
     }
-
-    final String BASE_URI = "https://trello.com/es";
 
     @FindBy(css = ".btn-link")
     private WebElement btn_logIn;
@@ -27,7 +26,6 @@ public class LoginPage extends BasePage {
     private WebElement btn_logInAccount;
 
     public HomePage login(String email, String password) {
-        webDriver.get(BASE_URI);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btn_logIn));
         btn_logIn.click();
         txb_email.sendKeys(email);

@@ -1,4 +1,6 @@
 import core.WebDriverManager;
+import trello.PageTransporter;
+import trello.entity.Board;
 import trello.webelement.AddBoardPopup;
 import trello.page.BoardPage;
 import trello.page.CloseBoardPage;
@@ -13,6 +15,8 @@ import org.junit.Test;
 
 public class BoardTest {
 
+    final static String BASE_URI = "https://trello.com/es";
+
     @After
     public void afterTest() {
         WebDriverManager.getInstance().quitDriver();
@@ -20,17 +24,22 @@ public class BoardTest {
 
     @Test
     public void createABoard_TitleAsMyBoard_MyBoard() {
-        final String BOARD_TITLE = "My Board";
+        final String BOARD_NAME = "My Board";
+
+        Board board = new Board();
+        board.setName(BOARD_NAME);
+
+        PageTransporter.goToUrl(BASE_URI);
 
         LoginPage loginPage = new LoginPage();
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
 
         AddBoardPopup addBoardPopup = homePage.displayBoardPopup();
-        BoardPage boardPage= addBoardPopup.create(BOARD_TITLE);
+        BoardPage boardPage= addBoardPopup.create(board);
 
         String actualResult = boardPage.getSpam_boardTitle().getText();
 
-        Assert.assertEquals(BOARD_TITLE, actualResult);
+        Assert.assertEquals(BOARD_NAME, actualResult);
 
         CloseBoardPopup closeBoardPopup = boardPage.close();
         CloseBoardPage closeBoardPage = closeBoardPopup.confirm();
@@ -44,11 +53,14 @@ public class BoardTest {
         final String BOARD_NAME = "My Board";
         final String CLOSE_BOARD_MESSAGE = BOARD_NAME + " está cerrado.";
 
+        Board board = new Board();
+        board.setName(BOARD_NAME);
+
         LoginPage loginPage = new LoginPage();
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
 
         AddBoardPopup addBoardPopup = homePage.displayBoardPopup();
-        BoardPage boardPage= addBoardPopup.create(BOARD_NAME);
+        BoardPage boardPage= addBoardPopup.create(board);
 
         CloseBoardPopup closeBoardPopup = boardPage.close();
         CloseBoardPage closeBoardPage = closeBoardPopup.confirm();
@@ -62,11 +74,14 @@ public class BoardTest {
         final String BOARD_NAME = "My Board";
         final String CLOSE_BOARD_PAGE_TITLE = "Tablero no encontrado.";
 
+        Board board = new Board();
+        board.setName(BOARD_NAME);
+
         LoginPage loginPage = new LoginPage();
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
 
         AddBoardPopup addBoardPopup = homePage.displayBoardPopup();
-        BoardPage boardPage= addBoardPopup.create(BOARD_NAME);
+        BoardPage boardPage= addBoardPopup.create(board);
 
         CloseBoardPopup closeBoardPopup = boardPage.close();
         CloseBoardPage closeBoardPage = closeBoardPopup.confirm();

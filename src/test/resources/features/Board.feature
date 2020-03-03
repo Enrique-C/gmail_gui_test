@@ -3,7 +3,7 @@ Feature: Board
   Scenario: Create a Board
     Given I login to the application with "Admmin" user credentials
     When I create a Board with name "Test Board"
-    Then The application should displays a page with name board "Test Board"
+    Then The application should displays a page with the name board
     And I close Board
     And I delete Board
 
