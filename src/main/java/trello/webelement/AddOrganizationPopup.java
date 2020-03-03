@@ -3,6 +3,7 @@ package trello.webelement;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import trello.entity.Organization;
 import trello.page.BasePage;
 import trello.page.OrganizationPage;
 
@@ -25,9 +26,9 @@ public class AddOrganizationPopup extends BasePage {
     @FindBy(css = ".eg0KI5SqghoOFd")
     private WebElement linkText;
 
-    public OrganizationPage create(String organizationName, String OrganizationDescription) {
-        txb_organizationName.sendKeys(organizationName);
-        txb_OrganizationDescription.sendKeys(OrganizationDescription);
+    public OrganizationPage create(Organization organization) {
+        txb_organizationName.sendKeys(organization.getName());
+        txb_OrganizationDescription.sendKeys(organization.getDescription());
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btn_createOrganization));
         btn_createOrganization.click();
         webDriverWait.until(ExpectedConditions.elementToBeClickable(linkText));

@@ -1,4 +1,6 @@
 import core.WebDriverManager;
+import trello.PageTransporter;
+import trello.entity.Organization;
 import trello.webelement.AddOrganizationPopup;
 import trello.page.HomePage;
 import trello.page.LoginPage;
@@ -9,6 +11,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class OrganizationTest {
+    final static String BASE_URI = "https://trello.com/es";
 
     @After
     public void afterTest() {
@@ -17,18 +20,27 @@ public class OrganizationTest {
 
     @Test
     public void crateOrganization_NameTestOrganization_TestOrganization() {
+
         final String ORGANIZATION_NAME = "Test organizarion";
         final String ORGANIZATION_DESCRIPTION = "This is an description";
+
+        PageTransporter.goToUrl(BASE_URI);
 
         LoginPage loginPage = new LoginPage();
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
 
+        Organization organization = new Organization();
+        organization.setName(ORGANIZATION_NAME);
+        organization.setDescription(ORGANIZATION_DESCRIPTION);
+
         AddOrganizationPopup addOrganizationPopup = homePage.displayOrganizationPopup();
-        OrganizationPage organizationPage = addOrganizationPopup.create(ORGANIZATION_NAME, ORGANIZATION_DESCRIPTION);
+        OrganizationPage organizationPage = addOrganizationPopup.create(organization);
 
         String actualResult = organizationPage.getText_pageTitle();
 
         Assert.assertEquals(ORGANIZATION_NAME, actualResult);
+
+        organizationPage.delete();
     }
 
     @Test
@@ -40,10 +52,14 @@ public class OrganizationTest {
         LoginPage loginPage = new LoginPage();
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
 
+        Organization organization = new Organization();
+        organization.setName(ORGANIZATION_NAME);
+        organization.setDescription(ORGANIZATION_DESCRIPTION);
+
         AddOrganizationPopup addOrganizationPopup = homePage.displayOrganizationPopup();
-        OrganizationPage organizationPage = addOrganizationPopup.create(ORGANIZATION_NAME, ORGANIZATION_DESCRIPTION);
+        OrganizationPage organizationPage = addOrganizationPopup.create(organization);
         HomePage homePage1 = organizationPage.delete();
-        SearchPopup searchPopup = homePage1.search(ORGANIZATION_NAME); // it DOESN'T WORK
+        SearchPopup searchPopup = homePage1.search(ORGANIZATION_NAME);
         String actualResult = searchPopup.getMessageSearchResult();
 
         Assert.assertEquals(EXPECTED_MESSAGE, actualResult);

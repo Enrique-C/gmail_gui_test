@@ -8,6 +8,5 @@ public class Hook {
     @After
     public void tearDown() {
         WebDriverManager.getInstance().quitDriver();
-        System.out.println("******************************************");
     }
 }
