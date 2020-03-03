@@ -64,7 +64,7 @@ public class MyStepdefs {
         deleteBoardPopup = closeBoardPage.delete();
         deleteBoardPage = deleteBoardPopup.confirm();
 
-        WebDriverManager.getInstance().quitDriver();//REVIEW
+//        WebDriverManager.getInstance().quitDriver();//REVIEW
     }
 
     @Then("^The application should displays a delete board message \"([^\"]*)\"$")
