@@ -3,9 +3,14 @@ package trello.webelement;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import trello.entity.Board;
 import trello.entity.Organization;
 import trello.page.BasePage;
 import trello.page.OrganizationPage;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class AddOrganizationPopup extends BasePage {
 
@@ -26,14 +31,32 @@ public class AddOrganizationPopup extends BasePage {
     @FindBy(css = ".eg0KI5SqghoOFd")
     private WebElement linkText;
 
-    public OrganizationPage create(Organization organization) {
-        txb_organizationName.sendKeys(organization.getName());
-        txb_OrganizationDescription.sendKeys(organization.getDescription());
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(btn_createOrganization));
-        btn_createOrganization.click();
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(linkText));
-        linkText.click();
+    public OrganizationInvitePopup create(final Organization organization, final Set<String> fields) {
+        HashMap<String, Runnable> strategyMap = composeStrategyMap(organization);
+        fields.forEach(field -> strategyMap.get(field).run());
+        clickOnBtnCreateOrganization();
 
-        return new OrganizationPage();
+        return new OrganizationInvitePopup();
+    }
+
+    private HashMap<String, Runnable> composeStrategyMap(Organization organization) {
+        HashMap<String, Runnable> strategyMap = new HashMap<>();
+
+        strategyMap.put("name", () -> setName(organization.getName()));
+        strategyMap.put("description", () -> setDescription(organization.getDescription()));
+
+        return strategyMap;
+    }
+
+    private void setName(String name) {
+        txb_organizationName.sendKeys(name);
+    }
+
+    private void setDescription(String description) {
+        txb_OrganizationDescription.sendKeys(description);
+    }
+
+    private void clickOnBtnCreateOrganization() {
+        btn_createOrganization.click();
     }
 }

@@ -9,13 +9,13 @@ public class SearchPopup extends BasePage {
 
     @Override
     protected void waitUntilPageObjectIsLoaded() {
-        webDriverWait.until(ExpectedConditions.visibilityOf(div_searchWaring));
     }
 
     @FindBy(css = "div.search-warning")
     private WebElement div_searchWaring;
 
     public String getMessageSearchResult() {
+        webDriverWait.until(ExpectedConditions.visibilityOf(div_searchWaring));
         return div_searchWaring.getText();
     }
 }

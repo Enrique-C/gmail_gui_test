@@ -10,18 +10,15 @@
 
 package steps;
 
-import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
-import trello.PageTransporter;
-import trello.entity.Board;
 import trello.entity.Organization;
 import trello.page.HomePage;
 import trello.page.LoginPage;
 import trello.page.OrganizationPage;
 import trello.webelement.AddOrganizationPopup;
+import trello.webelement.OrganizationInvitePopup;
 import trello.webelement.SearchPopup;
 
 import java.util.Map;
@@ -33,6 +30,7 @@ public class OrganizationSteps {
     LoginPage loginPage;
     HomePage homePage;
     OrganizationPage organizationPage;
+    OrganizationInvitePopup organizationInvitePopup;
 
     Organization organization;
 
@@ -43,14 +41,12 @@ public class OrganizationSteps {
     }
 
     @When("^I create a Organization with$")
-    public void createAOrganizationWith(DataTable boardTable) {
-        Map<String, String> organizationDictionary = boardTable.asMap(String.class, String.class);
-
-        organization.setName(organizationDictionary.get("name"));
-        organization.setDescription(organizationDictionary.get("description"));
+    public void createAOrganizationWith(final Map<String, String> boardAttributes) {
+        organization.setBoardInformation(boardAttributes);
 
         AddOrganizationPopup addOrganizationPopup = homePage.displayOrganizationPopup();
-        organizationPage = addOrganizationPopup.create(organization);
+        organizationInvitePopup = addOrganizationPopup.create(organization, boardAttributes.keySet());
+        organizationPage = organizationInvitePopup.clickOnLinkText();
     }
 
     @Then("^The application should displays a page with the organization name$")
@@ -67,7 +63,7 @@ public class OrganizationSteps {
 
     @Then("^I search the Organization and message \"([^\"]*)\" is displayed$")
     public void iSearchTheOrganizationAndMessageIsDisplayed(String deletionMessage) {
-        PageTransporter.goToUrl(BASE_URI);
+//        PageTransporter.goToUrl(BASE_URI);
         SearchPopup searchPopup = homePage.search(organization.getName());
         String actualResult = searchPopup.getMessageSearchResult();
 

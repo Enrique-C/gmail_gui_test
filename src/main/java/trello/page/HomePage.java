@@ -16,7 +16,7 @@ public class HomePage extends BasePage {
     @FindBy(css = "span._24AWINHReYjNBf") //button._2ZNy4w8Nfa58d1:nth-child(5)
     private WebElement btn_profile;
 
-    @FindBy(css = ".\\_3r1LXvjBp8zfAv")
+    @FindBy(css = ".\\_3r1LXvjBp8zfAv") //span[name = 'add']
     private WebElement btnBar_plus;
 
     @FindBy(css = ".\\_2DBw9GxD3tha0R")
@@ -42,11 +42,11 @@ public class HomePage extends BasePage {
     }
 
     public SearchPopup search(String nameElement) {
+        // Crear un validador, // Investigar tool para web elementes
         webDriverWait.until(ExpectedConditions.visibilityOfAllElements(txb_search));
         txb_search.sendKeys(nameElement);
         webDriverWait.until(ExpectedConditions.attributeContains(txb_search, "value", nameElement));
         btn_search.click();
-
         return new SearchPopup();
     }
 
@@ -55,7 +55,6 @@ public class HomePage extends BasePage {
         btnBar_plus.click();
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btn_newBoard));
         btn_newBoard.click();
-
         return new AddBoardPopup();
     }
 
@@ -64,14 +63,12 @@ public class HomePage extends BasePage {
         btnBar_plus.click();
         webDriverWait.until(ExpectedConditions.visibilityOf(btn_newOrganization));
         btn_newOrganization.click();
-
         return new AddOrganizationPopup();
     }
 
     public BoardPage openFirstBoard() {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(board_random));
         board_random.click();
-
         return new BoardPage();
     }
 }

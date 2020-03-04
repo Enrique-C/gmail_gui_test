@@ -9,6 +9,9 @@
 
 package trello.entity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Defines an Organization.
  *
@@ -54,5 +57,19 @@ public class Organization {
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setBoardInformation(final Map<String, String> boardAttributes) {
+        HashMap<String, Runnable> strategyMAp = composeStrategyMap(boardAttributes);
+        boardAttributes.keySet().forEach(key -> strategyMAp.get(key).run());
+    }
+
+    private HashMap<String, Runnable> composeStrategyMap(Map<String, String> boardAttributes) {
+        HashMap<String, Runnable> strategyMap = new HashMap<>();
+
+        strategyMap.put("name", () -> setName(boardAttributes.get("name")));
+        strategyMap.put("description", () ->  setDescription(boardAttributes.get("description")));
+
+        return strategyMap;
     }
 }
