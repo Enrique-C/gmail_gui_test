@@ -1,20 +1,11 @@
 package trello.webelement;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import trello.page.BasePage;
+import trello.page.HomePage;
 
-public class DeleteOrganizationPopup extends BasePage {
-    @Override
-    protected void waitUntilPageObjectIsLoaded() {
-        webDriverWait.until(ExpectedConditions.visibilityOf(popupBtn_confirmDelete));
-    }
+public class DeleteOrganizationPopup extends BaseConfirmPopup{
 
-    @FindBy(css = ".js-confirm")
-    private WebElement popupBtn_confirmDelete;
-
-    public void confirm() {
-        popupBtn_confirmDelete.click();
+    public HomePage confirm() {
+        this.clickOnBtnAccept();
+        return new HomePage();
     }
 }

@@ -56,6 +56,8 @@ public class BoardTest {
         Board board = new Board();
         board.setName(BOARD_NAME);
 
+        PageTransporter.goToUrl(BASE_URI);
+
         LoginPage loginPage = new LoginPage();
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
 
@@ -77,6 +79,8 @@ public class BoardTest {
         Board board = new Board();
         board.setName(BOARD_NAME);
 
+        PageTransporter.goToUrl(BASE_URI);
+
         LoginPage loginPage = new LoginPage();
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
 
@@ -96,6 +100,8 @@ public class BoardTest {
 
     @Test
     public void darkHole() {
+        PageTransporter.goToUrl(BASE_URI);
+
         LoginPage loginPage = new LoginPage();
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
 
