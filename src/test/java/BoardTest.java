@@ -35,7 +35,7 @@ public class BoardTest {
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
 
         AddBoardPopup addBoardPopup = homePage.displayBoardPopup();
-        BoardPage boardPage= addBoardPopup.create(board);
+        BoardPage boardPage= addBoardPopup.create(board, null); //arreglar
 
         String actualResult = boardPage.getSpam_boardName().getText();
 
@@ -62,7 +62,7 @@ public class BoardTest {
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
 
         AddBoardPopup addBoardPopup = homePage.displayBoardPopup();
-        BoardPage boardPage= addBoardPopup.create(board);
+        BoardPage boardPage= addBoardPopup.create(board, null); //arreglar
 
         CloseBoardPopup closeBoardPopup = boardPage.close();
         CloseBoardPage closeBoardPage = closeBoardPopup.confirm();
@@ -85,7 +85,7 @@ public class BoardTest {
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
 
         AddBoardPopup addBoardPopup = homePage.displayBoardPopup();
-        BoardPage boardPage= addBoardPopup.create(board);
+        BoardPage boardPage= addBoardPopup.create(board, null); //arreglar
 
         CloseBoardPopup closeBoardPopup = boardPage.close();
         CloseBoardPage closeBoardPage = closeBoardPopup.confirm();

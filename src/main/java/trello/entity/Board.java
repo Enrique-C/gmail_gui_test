@@ -78,9 +78,10 @@ public class Board {
         this.visibility = visibility;
     }
 
-    public void setBoardInformation(final Map<String, String> organizationAttributes) {
-        HashMap<String, Runnable> strategyMAp = composeStrategyMap(organizationAttributes);
-        organizationAttributes.keySet().forEach(key -> strategyMAp.get(key).run());
+
+    public void setBoardInformation(final Map<String, String> boardAttributes) {
+        HashMap<String, Runnable> strategyMAp = composeStrategyMap(boardAttributes);
+        boardAttributes.keySet().forEach(key -> strategyMAp.get(key).run());
     }
 
     private HashMap<String, Runnable> composeStrategyMap(Map<String, String> boardAttributes) {

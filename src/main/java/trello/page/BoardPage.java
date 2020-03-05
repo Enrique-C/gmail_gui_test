@@ -1,16 +1,12 @@
 package trello.page;
 
-import org.apache.http.util.Asserts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import trello.entity.Organization;
 import trello.webelement.CloseBoardPopup;
-import trello.webelement.OrganizationInvitePopup;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Supplier;
 
@@ -25,7 +21,7 @@ public class BoardPage extends BasePage {
     private WebElement spam_boardName;
 
     @FindBy(css = "#permission-level")
-    private WebElement btn_levelAccessBoard;
+    private WebElement btn_levelVisibilityBoard;
 
     @FindBy(css = ".js-open-more")
     private WebElement rightMenuBtn_more;
@@ -37,11 +33,6 @@ public class BoardPage extends BasePage {
     private WebElement btn_butler;
 
     private Set<String> webElements;
-
-//    public BoardPage() {
-//        webElements = new HashSet<>();
-//        webElements.add()
-//    }
 
 
     public WebElement getSpam_boardName() {
@@ -57,31 +48,31 @@ public class BoardPage extends BasePage {
         return new CloseBoardPopup();
     }
 
-//    public void getBoardResult(final String boardVisibility, final Set<String> fields) {
-//        HashMap<String, Supplier> strategyMap = composeStrategyMap(boardVisibility);
+    public HashMap<String, String> getBoardResult(final Set<String> fields) {
+        HashMap<String, String> values = new HashMap<>();
+        HashMap<String, Supplier> strategyMap = composeStrategyMap();
 //        fields.forEach(field -> strategyMap.get(field).get());
-//
-//    }
-//
-//    private HashMap<String, Supplier> composeStrategyMap(String boardVisibility) {
-//        HashMap<String, Supplier> strategyMap = new HashMap<>();
-//
-//        strategyMap.put("name", getVisibilityBoard(boardVisibility));
-//        strategyMap.put("visibility", getNameBoard());
-//
-//        return strategyMap;
-//    }
-//
-//    private String getVisibilityBoard(String boardVisibility) {
-//        String locatorBoardVisibility = "spam:contains('s%')";
-//        locatorBoardVisibility = String.format(locatorBoardVisibility, boardVisibility);
-//        return btn_levelAccessBoard.findElement(By.cssSelector(locatorBoardVisibility)).getText();
-//    }
+        for (String field: strategyMap.keySet()) {
+            values.put(field, strategyMap.get(field).get().toString());
+        }
+        return values;
+    }
+
+    private HashMap<String, Supplier> composeStrategyMap() {
+        HashMap<String, Supplier> strategyMap = new HashMap<>();
+
+        strategyMap.put("name", this::getNameBoard);
+        strategyMap.put("visibility", this::getVisibilityBoard);
+
+        return strategyMap;
+    }
+
+    private String getVisibilityBoard() {
+        final String LOCATOR_TEXT_VISIBILITY = "//div[@class= \"js-board-header-btn-org-wrapper board-header-btn-org-wrapper\"]//a[@id=\"permission-level\"]";
+        return btn_levelVisibilityBoard.findElement(By.xpath(LOCATOR_TEXT_VISIBILITY)).getText();
+    }
 
     private String getNameBoard() {
         return spam_boardName.getText();
-    }
-
-    private void validate(String actualResult, String expectedResult) {
     }
 }

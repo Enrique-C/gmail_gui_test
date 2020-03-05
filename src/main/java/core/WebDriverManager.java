@@ -28,7 +28,7 @@ public class WebDriverManager {
         this.webDriver = WebDriverFactory.getWebDriver(browser);
         this.webDriver.manage().window().maximize();
         this.webDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        webDriverWait = new WebDriverWait(webDriver, 40);
+        webDriverWait = new WebDriverWait(webDriver, 20);
     }
 
     public WebDriver getWebDriver() {

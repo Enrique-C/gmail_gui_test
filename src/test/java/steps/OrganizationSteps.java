@@ -15,7 +15,6 @@ import cucumber.api.java.en.When;
 import org.junit.Assert;
 import trello.entity.Organization;
 import trello.page.HomePage;
-import trello.page.LoginPage;
 import trello.page.OrganizationPage;
 import trello.webelement.AddOrganizationPopup;
 import trello.webelement.OrganizationInvitePopup;
@@ -31,7 +30,7 @@ public class OrganizationSteps {
 
     Organization organization;
 
-    public OrganizationSteps(Organization organization, LoginPage loginPage, HomePage homePage) {
+    public OrganizationSteps(Organization organization) {
         this.organization = organization;
     }
 

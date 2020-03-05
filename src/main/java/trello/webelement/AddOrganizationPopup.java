@@ -3,13 +3,10 @@ package trello.webelement;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import trello.entity.Board;
 import trello.entity.Organization;
 import trello.page.BasePage;
-import trello.page.OrganizationPage;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 public class AddOrganizationPopup extends BasePage {
