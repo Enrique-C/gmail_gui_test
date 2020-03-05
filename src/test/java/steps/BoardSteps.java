@@ -13,13 +13,11 @@ import trello.webelement.CloseBoardPopup;
 import trello.page.DeleteBoardPage;
 import trello.webelement.DeleteBoardPopup;
 import trello.page.HomePage;
-import trello.page.LoginPage;
 import org.junit.Assert;
 
 public class BoardSteps {
 
     HomePage homePage;
-    LoginPage loginPage;
     AddBoardPopup addBoardPopup;
     BoardPage boardPage;
     CloseBoardPopup closeBoardPopup;
@@ -30,30 +28,23 @@ public class BoardSteps {
     Board board;
     Organization organization;
 
-    final static String BASE_URI = "https://trello.com/es";
-
     public BoardSteps(Board board, Organization organization) {
         this.board = board;
         this.organization = organization;
     }
 
-    @Given("^I login to the application with \"([^\"]*)\" user credentials$")
-    public void loginToTheApplicationWithUserCredentials(String typeUser) {
-        PageTransporter.goToUrl(BASE_URI);
-        loginPage = new LoginPage();
-        homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
-    }
 
     @When("^I create a Board with name \"([^\"]*)\"$")
     public void createABoardWithName(String boardName) {
         board.setName(boardName);
+        homePage = new HomePage();
         addBoardPopup = homePage.displayBoardPopup();
         boardPage = addBoardPopup.create(board);
     }
 
     @Then("^The application should displays a page with the name board$")
     public void displaysAPageWithNameBoard() {
-        String actualResult = boardPage.getSpam_boardTitle().getText();
+        String actualResult = boardPage.getSpam_boardName().getText();
 
         Assert.assertEquals(board.getName(), actualResult);
     }

@@ -41,10 +41,8 @@ public class AddOrganizationPopup extends BasePage {
 
     private HashMap<String, Runnable> composeStrategyMap(Organization organization) {
         HashMap<String, Runnable> strategyMap = new HashMap<>();
-
         strategyMap.put("name", () -> setName(organization.getName()));
         strategyMap.put("description", () -> setDescription(organization.getDescription()));
-
         return strategyMap;
     }
 

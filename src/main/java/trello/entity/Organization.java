@@ -59,16 +59,16 @@ public class Organization {
         this.description = description;
     }
 
-    public void setBoardInformation(final Map<String, String> boardAttributes) {
-        HashMap<String, Runnable> strategyMAp = composeStrategyMap(boardAttributes);
-        boardAttributes.keySet().forEach(key -> strategyMAp.get(key).run());
+    public void setOrganizationInformation(final Map<String, String> organizationAttributes) {
+        HashMap<String, Runnable> strategyMAp = composeStrategyMap(organizationAttributes);
+        organizationAttributes.keySet().forEach(key -> strategyMAp.get(key).run());
     }
 
-    private HashMap<String, Runnable> composeStrategyMap(Map<String, String> boardAttributes) {
+    private HashMap<String, Runnable> composeStrategyMap(Map<String, String> organizationAttributes) {
         HashMap<String, Runnable> strategyMap = new HashMap<>();
 
-        strategyMap.put("name", () -> setName(boardAttributes.get("name")));
-        strategyMap.put("description", () ->  setDescription(boardAttributes.get("description")));
+        strategyMap.put("name", () -> setName(organizationAttributes.get("name")));
+        strategyMap.put("description", () ->  setDescription(organizationAttributes.get("description")));
 
         return strategyMap;
     }

@@ -37,7 +37,7 @@ public class BoardTest {
         AddBoardPopup addBoardPopup = homePage.displayBoardPopup();
         BoardPage boardPage= addBoardPopup.create(board);
 
-        String actualResult = boardPage.getSpam_boardTitle().getText();
+        String actualResult = boardPage.getSpam_boardName().getText();
 
         Assert.assertEquals(BOARD_NAME, actualResult);
 

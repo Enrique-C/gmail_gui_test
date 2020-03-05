@@ -34,7 +34,7 @@ public class OrganizationTest {
 
         Organization organization = new Organization();
 
-        organization.setBoardInformation(boardAttributes);
+        organization.setOrganizationInformation(boardAttributes);
 
         PageTransporter.goToUrl(BASE_URI);
 
@@ -59,9 +59,9 @@ public class OrganizationTest {
         final String ORGANIZATION_DESCRIPTION = "This is an description";
         final String EXPECTED_MESSAGE = "No se han encontrado tarjetas ni tableros que coincidan con su búsqueda.";
 
-        Map<String, String> boardAttributes = new HashMap<>();
-        boardAttributes.put("name", ORGANIZATION_NAME);
-        boardAttributes.put("description", ORGANIZATION_DESCRIPTION);
+        Map<String, String> organizationAttributes = new HashMap<>();
+        organizationAttributes.put("name", ORGANIZATION_NAME);
+        organizationAttributes.put("description", ORGANIZATION_DESCRIPTION);
 
         Organization organization = new Organization();
 
@@ -74,7 +74,7 @@ public class OrganizationTest {
         organization.setDescription(ORGANIZATION_DESCRIPTION);
 
         AddOrganizationPopup addOrganizationPopup = homePage.displayOrganizationPopup();
-        OrganizationInvitePopup organizationInvitePopup = addOrganizationPopup.create(organization, boardAttributes.keySet());
+        OrganizationInvitePopup organizationInvitePopup = addOrganizationPopup.create(organization, organizationAttributes.keySet());
         OrganizationPage organizationPage = organizationInvitePopup.clickOnLinkText();
         HomePage homePage1 = organizationPage.delete();
         SearchPopup searchPopup = homePage1.search(ORGANIZATION_NAME);

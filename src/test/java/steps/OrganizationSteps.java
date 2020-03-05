@@ -25,9 +25,6 @@ import java.util.Map;
 
 public class OrganizationSteps {
 
-    final static String BASE_URI = "https://trello.com/es";
-
-    LoginPage loginPage;
     HomePage homePage;
     OrganizationPage organizationPage;
     OrganizationInvitePopup organizationInvitePopup;
@@ -36,13 +33,13 @@ public class OrganizationSteps {
 
     public OrganizationSteps(Organization organization, LoginPage loginPage, HomePage homePage) {
         this.organization = organization;
-        this.loginPage = loginPage;
-        this.homePage = homePage;
     }
 
     @When("^I create a Organization with$")
     public void createAOrganizationWith(final Map<String, String> boardAttributes) {
-        organization.setBoardInformation(boardAttributes);
+        homePage = new HomePage();
+
+        organization.setOrganizationInformation(boardAttributes);
 
         AddOrganizationPopup addOrganizationPopup = homePage.displayOrganizationPopup();
         organizationInvitePopup = addOrganizationPopup.create(organization, boardAttributes.keySet());
@@ -52,7 +49,6 @@ public class OrganizationSteps {
     @Then("^The application should displays a page with the organization name$")
     public void theApplicationShouldDisplaysAPageWithNameOrganization() {
         String actualResult = organizationPage.getText_pageTitle();
-
         Assert.assertEquals(organization.getName(), actualResult);
     }
 

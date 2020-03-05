@@ -9,6 +9,9 @@
 
 package trello.entity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Defines a Board.
  *
@@ -20,9 +23,6 @@ public class Board {
 
     // Content name value.
     private String name;
-
-    // Content description value.
-    private String description;
 
     // Content organization value.
     private String organization;
@@ -44,22 +44,6 @@ public class Board {
      */
     public void setName(String name) {
         this.name = name;
-    }
-
-    /**
-     * Gets description value.
-     * @return description value.
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * Sets description value.
-     * @param description value.
-     */
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     /**
@@ -92,5 +76,19 @@ public class Board {
      */
     public void setVisibility(String visibility) {
         this.visibility = visibility;
+    }
+
+    public void setBoardInformation(final Map<String, String> organizationAttributes) {
+        HashMap<String, Runnable> strategyMAp = composeStrategyMap(organizationAttributes);
+        organizationAttributes.keySet().forEach(key -> strategyMAp.get(key).run());
+    }
+
+    private HashMap<String, Runnable> composeStrategyMap(Map<String, String> boardAttributes) {
+        HashMap<String, Runnable> strategyMap = new HashMap<>();
+
+        strategyMap.put("name", () -> setName(boardAttributes.get("name")));
+        strategyMap.put("visibility", () ->  setVisibility(boardAttributes.get("visibility")));
+
+        return strategyMap;
     }
 }
