@@ -16,7 +16,18 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-checkstyle{
+task executeFeatures(type: Test) {
+    useTestNG()
+    options {
+        useDefaultListeners = false
+
+        jvmArgs = ['-Dcucumber.options= --glue  steps src/test/java/steps --plugin pretty '
+                           + '--plugin json:build/cucumber/cucumber.json --plugin rerun:build/cucumber/rerun.txt '
+                           + 'classpath:' + '']
+    }
+}
+
+checkstyle {
     toolVersion = '8.1'
 }
 
@@ -28,7 +39,7 @@ repositories {
 
 configurations {
     cucumberRuntime {
-        extendsFrom testImplementation
+        extendsFrom testRuntime
     }
 }
 
