@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import util.GradleReader;
 
-import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class WebDriverManager {
