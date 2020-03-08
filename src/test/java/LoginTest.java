@@ -1,4 +1,6 @@
 import core.WebDriverManager;
+import org.junit.Assert;
+import trello.PageTransporter;
 import trello.page.HomePage;
 import trello.page.LoginPage;
 import org.junit.After;
@@ -9,6 +11,8 @@ import static org.junit.Assert.assertTrue;
 
 public class LoginTest {
 
+    static final String BASE_URI = "https://trello.com/es";
+
     @After
     public void afterTest(){
         WebDriverManager.getInstance().quitDriver();
@@ -16,12 +20,12 @@ public class LoginTest {
 
     @Test
     public void login_ValidUser_LoginPage(){
+        PageTransporter.goToUrl(BASE_URI);
         LoginPage loginPage = new LoginPage();
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
         final String EXPECTED_RESULT = "Enrique Carrizales";
-        String btn_profileTitle = homePage.getBtn_profile().getAttribute("title");
-        boolean actualResult = btn_profileTitle.matches(".*" + EXPECTED_RESULT + ".*");
+        String actualResult = homePage.getUserName();
 
-        assertTrue(actualResult);
+        Assert.assertEquals(EXPECTED_RESULT, actualResult);
     }
 }

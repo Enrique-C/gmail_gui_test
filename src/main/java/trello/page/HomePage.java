@@ -13,7 +13,7 @@ public class HomePage extends BasePage {
     protected void waitUntilPageObjectIsLoaded() {
     }
 
-    @FindBy(css = "span._24AWINHReYjNBf") //button._2ZNy4w8Nfa58d1:nth-child(5)
+    @FindBy(css = "span._24AWINHReYjNBf")
     private WebElement btn_profile;
 
     @FindBy(css = ".\\_3r1LXvjBp8zfAv") //span[name = 'add']
@@ -34,11 +34,14 @@ public class HomePage extends BasePage {
     @FindBy(css = "input._1CyMivLdH2a8dA")
     private WebElement txb_search;
 
-    @FindBy(css = "span[name = external-link]")
+    @FindBy(css = "button[class=\"_2ZNy4w8Nfa58d1 js-open-header-member-menu _3R2LYccoXhpfv9\"]")
     private WebElement btn_search;
 
-    public WebElement getBtn_profile() {
-        return btn_profile;
+    public String getUserName() {
+        final String TITLE = "title";
+        final String REGEX = "\\(";
+        String userName = btn_search.getAttribute(TITLE).split(REGEX, 0)[0];
+        return userName.substring(0, userName.length() - 1);
     }
 
     public SearchPopup search(String nameElement) {
