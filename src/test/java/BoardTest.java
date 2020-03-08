@@ -13,9 +13,14 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class BoardTest {
 
     final static String BASE_URI = "https://trello.com/es";
+    final static String BOARD_NAME = "Test Board";
+    final static String BOARD_VISIBILITY = "Privado";
 
     @After
     public void afterTest() {
@@ -24,18 +29,20 @@ public class BoardTest {
 
     @Test
     public void createABoard_TitleAsMyBoard_MyBoard() {
-        final String BOARD_NAME = "My Board";
+        Map<String, String> boardAttributes = new HashMap<>();
+        boardAttributes.put("name", BOARD_NAME);
+        boardAttributes.put("visibility", BOARD_VISIBILITY);
 
         Board board = new Board();
-        board.setName(BOARD_NAME);
 
         PageTransporter.goToUrl(BASE_URI);
 
         LoginPage loginPage = new LoginPage();
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
 
+        board.setBoardInformation(boardAttributes);
         AddBoardPopup addBoardPopup = homePage.displayBoardPopup();
-        BoardPage boardPage= addBoardPopup.create(board, null); //arreglar
+        BoardPage boardPage= addBoardPopup.create(board, boardAttributes.keySet());
 
         String actualResult = boardPage.getSpam_boardName().getText();
 
@@ -50,8 +57,11 @@ public class BoardTest {
 
     @Test
     public void closeABoard_TitleAsMyBoard_MyBoard() {
-        final String BOARD_NAME = "My Board";
         final String CLOSE_BOARD_MESSAGE = BOARD_NAME + " está cerrado.";
+
+        Map<String, String> boardAttributes = new HashMap<>();
+        boardAttributes.put("name", BOARD_NAME);
+        boardAttributes.put("visibility", BOARD_VISIBILITY);
 
         Board board = new Board();
         board.setName(BOARD_NAME);
@@ -61,8 +71,10 @@ public class BoardTest {
         LoginPage loginPage = new LoginPage();
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
 
+        board.setBoardInformation(boardAttributes);
+
         AddBoardPopup addBoardPopup = homePage.displayBoardPopup();
-        BoardPage boardPage= addBoardPopup.create(board, null); //arreglar
+        BoardPage boardPage= addBoardPopup.create(board, boardAttributes.keySet());
 
         CloseBoardPopup closeBoardPopup = boardPage.close();
         CloseBoardPage closeBoardPage = closeBoardPopup.confirm();
@@ -73,8 +85,11 @@ public class BoardTest {
 
     @Test
     public void deleteABoard_TitleAsMyBoard_MyBoard() {
-        final String BOARD_NAME = "My Board";
         final String CLOSE_BOARD_PAGE_TITLE = "Tablero no encontrado.";
+
+        Map<String, String> boardAttributes = new HashMap<>();
+        boardAttributes.put("name", BOARD_NAME);
+        boardAttributes.put("visibility", BOARD_VISIBILITY);
 
         Board board = new Board();
         board.setName(BOARD_NAME);
@@ -84,8 +99,10 @@ public class BoardTest {
         LoginPage loginPage = new LoginPage();
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
 
+        board.setBoardInformation(boardAttributes);
+
         AddBoardPopup addBoardPopup = homePage.displayBoardPopup();
-        BoardPage boardPage= addBoardPopup.create(board, null); //arreglar
+        BoardPage boardPage= addBoardPopup.create(board, boardAttributes.keySet());
 
         CloseBoardPopup closeBoardPopup = boardPage.close();
         CloseBoardPage closeBoardPage = closeBoardPopup.confirm();
@@ -98,22 +115,22 @@ public class BoardTest {
         Assert.assertEquals(CLOSE_BOARD_PAGE_TITLE, actualResult);
     }
 
-    @Test
-    public void darkHole() {
-        PageTransporter.goToUrl(BASE_URI);
-
-        LoginPage loginPage = new LoginPage();
-        HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
-
-        while (true){
-            BoardPage boardPage= homePage.openFirstBoard();
-
-            CloseBoardPopup closeBoardPopup = boardPage.close();
-            CloseBoardPage closeBoardPage = closeBoardPopup.confirm();
-
-            DeleteBoardPopup deleteBoardPopup = closeBoardPage.delete();
-            deleteBoardPopup.confirm();
-            WebDriverManager.getInstance().getWebDriver().get("https://trello.com/enriquecarrizales1/boards");
-        }
-    }
+//    @Test
+//    public void cleanTestAccountTrello() {
+//        PageTransporter.goToUrl(BASE_URI);
+//
+//        LoginPage loginPage = new LoginPage();
+//        HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
+//
+//        while (true){
+//            BoardPage boardPage= homePage.openFirstBoard();
+//
+//            CloseBoardPopup closeBoardPopup = boardPage.close();
+//            CloseBoardPage closeBoardPage = closeBoardPopup.confirm();
+//
+//            DeleteBoardPopup deleteBoardPopup = closeBoardPage.delete();
+//            deleteBoardPopup.confirm();
+//            WebDriverManager.getInstance().getWebDriver().get("https://trello.com/enriquecarrizales1/boards");
+//        }
+//    }
 }

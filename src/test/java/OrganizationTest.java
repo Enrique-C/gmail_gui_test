@@ -28,13 +28,13 @@ public class OrganizationTest {
         final String ORGANIZATION_NAME = "Test organizarion";
         final String ORGANIZATION_DESCRIPTION = "This is an description";
 
-        Map<String, String> boardAttributes = new HashMap<>();
-        boardAttributes.put("name", ORGANIZATION_NAME);
-        boardAttributes.put("description", ORGANIZATION_DESCRIPTION);
+        Map<String, String> organizationAttributes = new HashMap<>();
+        organizationAttributes.put("name", ORGANIZATION_NAME);
+        organizationAttributes.put("description", ORGANIZATION_DESCRIPTION);
 
         Organization organization = new Organization();
 
-        organization.setOrganizationInformation(boardAttributes);
+        organization.setOrganizationInformation(organizationAttributes);
 
         PageTransporter.goToUrl(BASE_URI);
 
@@ -42,8 +42,9 @@ public class OrganizationTest {
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
 
 
+
         AddOrganizationPopup addOrganizationPopup = homePage.displayOrganizationPopup();
-        OrganizationInvitePopup organizationInvitePopup = addOrganizationPopup.create(organization, boardAttributes.keySet());
+        OrganizationInvitePopup organizationInvitePopup = addOrganizationPopup.create(organization, organizationAttributes.keySet());
         OrganizationPage organizationPage = organizationInvitePopup.clickOnLinkText();
 
         String actualResult = organizationPage.getText_pageTitle();
