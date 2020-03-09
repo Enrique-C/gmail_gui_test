@@ -28,7 +28,7 @@ public class BoardSteps {
     Board board;
     Organization organization;
 
-    Map<String, String> boardAttributes;
+    Map<String, String> actualResultBoard;
 
     public BoardSteps(Board board, Organization organization) {
         this.board = board;
@@ -43,15 +43,13 @@ public class BoardSteps {
         addBoardPopup = homePage.displayBoardPopup();
         boardPage = addBoardPopup.create(board, boardAttributes.keySet());
 
-        this.boardAttributes = boardAttributes;
+        this.actualResultBoard = boardAttributes;
     }
 
     @Then("^The application should displays a page with the name board$")
     public void displaysAPageWithNameBoard() {
-        String actualResult = boardPage.getSpam_boardName().getText();
-        Map<String, String> boardResult = boardPage.getBoardResult(boardAttributes.keySet());
-
-        Assert.assertEquals(boardAttributes, boardResult); ///CAMBIAR POSICION DE EXPECTED Y RESULT
+        Map<String, String> expectedResultBoard = boardPage.getBoardResult(actualResultBoard.keySet());
+        Assert.assertEquals(actualResultBoard, expectedResultBoard);
     }
 
     @When("^I close Board$")
@@ -73,8 +71,8 @@ public class BoardSteps {
     }
 
     @Then("^The application should displays a delete board message \"([^\"]*)\"$")
-    public void displaysADeleteBoardMessage(String deleteMessage) {
-        String actualResult = deleteBoardPage.getH1_title();
-        Assert.assertEquals(deleteMessage, actualResult);
+    public void displaysADeleteBoardMessage(String expectedResultMessage) {
+        String actualResultMessage = deleteBoardPage.getH1_title();
+        Assert.assertEquals(actualResultMessage, expectedResultMessage);
     }
 }

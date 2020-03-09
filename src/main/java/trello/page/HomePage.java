@@ -23,10 +23,10 @@ public class HomePage extends BasePage {
     @FindBy(css = ".\\_2DBw9GxD3tha0R")
     private WebElement btn_newBoard;
 
-    @FindBy(css = "li:nth-child(2) .\\_2DBw9GxD3tha0R")
+    @FindBy(xpath = "//button[ @data-test-id = \"header-create-team-button\"]//p[@class = \"_2DBw9GxD3tha0R\"]")
     private WebElement btn_newOrganization;
 
-    @FindBy(css = ".boards-page-board-section-list-item:nth-child(1)")
+    @FindBy(xpath = "//li[@class = \"boards-page-board-section-list-item\"]//div[@class = \"board-tile-details is-badged\"]")
     private WebElement board_random;
 
     @FindBy(css = "._33CvMKqfH4Yf0j")

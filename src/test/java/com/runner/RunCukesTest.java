@@ -19,11 +19,11 @@ public class RunCukesTest extends AbstractTestNGCucumberTests {
 
     @BeforeTest
     public void beforeExecution() {
-        System.out.println("+++++++++++++++++++++++++++++++++++");
+        // Todo
     }
 
     @AfterTest
     public void afterExecution() {
-        // Some code here
+        // Todo
     }
 }
