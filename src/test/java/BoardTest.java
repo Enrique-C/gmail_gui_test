@@ -115,22 +115,22 @@ public class BoardTest {
         Assert.assertEquals(CLOSE_BOARD_PAGE_TITLE, actualResult);
     }
 
-//    @Test
-//    public void cleanTestAccountTrello() {
-//        PageTransporter.goToUrl(BASE_URI);
-//
-//        LoginPage loginPage = new LoginPage();
-//        HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
-//
-//        while (true){
-//            BoardPage boardPage= homePage.openFirstBoard();
-//
-//            CloseBoardPopup closeBoardPopup = boardPage.close();
-//            CloseBoardPage closeBoardPage = closeBoardPopup.confirm();
-//
-//            DeleteBoardPopup deleteBoardPopup = closeBoardPage.delete();
-//            deleteBoardPopup.confirm();
-//            WebDriverManager.getInstance().getWebDriver().get("https://trello.com/enriquecarrizales1/boards");
-//        }
-//    }
+    @Test
+    public void cleanTestAccountTrello() {
+        PageTransporter.goToUrl(BASE_URI);
+
+        LoginPage loginPage = new LoginPage();
+        HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
+
+        while (true){
+            BoardPage boardPage= homePage.openFirstBoard();
+
+            CloseBoardPopup closeBoardPopup = boardPage.close();
+            CloseBoardPage closeBoardPage = closeBoardPopup.confirm();
+
+            DeleteBoardPopup deleteBoardPopup = closeBoardPage.delete();
+            deleteBoardPopup.confirm();
+            WebDriverManager.getInstance().getWebDriver().get("https://trello.com/enriquecarrizales1/boards");
+        }
+    }
 }
