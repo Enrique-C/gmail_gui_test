@@ -31,6 +31,7 @@ public class AddOrganizationPopup extends BasePage {
     public OrganizationInvitePopup create(final Organization organization, final Set<String> fields) {
         HashMap<String, Runnable> strategyMap = composeStrategyMap(organization);
         fields.forEach(field -> strategyMap.get(field).run());
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btn_createOrganization));
         clickOnBtnCreateOrganization();
 
         return new OrganizationInvitePopup();

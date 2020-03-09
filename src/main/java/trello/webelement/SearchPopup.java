@@ -9,6 +9,7 @@ public class SearchPopup extends BasePage {
 
     @Override
     protected void waitUntilPageObjectIsLoaded() {
+        webDriverWait.until(ExpectedConditions.visibilityOf(div_searchWaring));
     }
 
     @FindBy(css = "div.search-warning")

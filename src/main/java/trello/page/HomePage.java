@@ -1,5 +1,6 @@
 package trello.page;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,7 +17,7 @@ public class HomePage extends BasePage {
     @FindBy(css = "span._24AWINHReYjNBf")
     private WebElement btn_profile;
 
-    @FindBy(css = ".\\_3r1LXvjBp8zfAv") //span[name = 'add']
+    @FindBy(css = ".\\_3r1LXvjBp8zfAv")
     private WebElement btnBar_plus;
 
     @FindBy(css = ".\\_2DBw9GxD3tha0R")
@@ -34,7 +35,7 @@ public class HomePage extends BasePage {
     @FindBy(css = "input._1CyMivLdH2a8dA")
     private WebElement txb_search;
 
-    @FindBy(css = "button[class=\"_2ZNy4w8Nfa58d1 js-open-header-member-menu _3R2LYccoXhpfv9\"]")
+    @FindBy(xpath = "//span//a")
     private WebElement btn_search;
 
     public String getUserName() {
@@ -45,7 +46,7 @@ public class HomePage extends BasePage {
     }
 
     public SearchPopup search(String nameElement) {
-        // Crear un validador, // Investigar tool para web elementes
+        // Crear un validador
         webDriverWait.until(ExpectedConditions.visibilityOfAllElements(txb_search));
         txb_search.sendKeys(nameElement);
         webDriverWait.until(ExpectedConditions.attributeContains(txb_search, "value", nameElement));
@@ -54,9 +55,7 @@ public class HomePage extends BasePage {
     }
 
     public AddBoardPopup displayBoardPopup() {
-        webDriverWait.until(ExpectedConditions.visibilityOf(btnBar_plus));
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnBar_plus));
-        btnBar_plus.click();
+        clickOnBtnBarPlus();
         webDriverWait.until(ExpectedConditions.visibilityOf(btn_newBoard));
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btn_newBoard));
         btn_newBoard.click();
@@ -64,8 +63,7 @@ public class HomePage extends BasePage {
     }
 
     public AddOrganizationPopup displayOrganizationPopup() {
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnBar_plus));
-        btnBar_plus.click();
+        clickOnBtnBarPlus();
         webDriverWait.until(ExpectedConditions.visibilityOf(btn_newOrganization));
         btn_newOrganization.click();
         return new AddOrganizationPopup();
@@ -75,5 +73,11 @@ public class HomePage extends BasePage {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(board_random));
         board_random.click();
         return new BoardPage();
+    }
+
+    private void clickOnBtnBarPlus() {
+        webDriverWait.until(ExpectedConditions.visibilityOf(btnBar_plus));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnBar_plus));
+        btnBar_plus.click();
     }
 }
