@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class BoardTest {
 
-    final static String BASE_URI = "https://trello.com/es";
+    final static String BASE_URI = "https://trello.com";
     final static String BOARD_NAME = "Test Board";
     final static String BOARD_VISIBILITY = "Privado";
 
@@ -40,8 +40,9 @@ public class BoardTest {
         LoginPage loginPage = new LoginPage();
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
 
-        board.setBoardInformation(boardAttributes);
+
         AddBoardPopup addBoardPopup = homePage.displayBoardPopup();
+        board.setBoardInformation(boardAttributes);
         BoardPage boardPage= addBoardPopup.create(board, boardAttributes.keySet());
 
         String actualResult = boardPage.getSpam_boardName().getText();
@@ -71,9 +72,8 @@ public class BoardTest {
         LoginPage loginPage = new LoginPage();
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
 
-        board.setBoardInformation(boardAttributes);
-
         AddBoardPopup addBoardPopup = homePage.displayBoardPopup();
+        board.setBoardInformation(boardAttributes);
         BoardPage boardPage= addBoardPopup.create(board, boardAttributes.keySet());
 
         CloseBoardPopup closeBoardPopup = boardPage.close();
@@ -99,9 +99,8 @@ public class BoardTest {
         LoginPage loginPage = new LoginPage();
         HomePage homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
 
-        board.setBoardInformation(boardAttributes);
-
         AddBoardPopup addBoardPopup = homePage.displayBoardPopup();
+        board.setBoardInformation(boardAttributes);
         BoardPage boardPage= addBoardPopup.create(board, boardAttributes.keySet());
 
         CloseBoardPopup closeBoardPopup = boardPage.close();

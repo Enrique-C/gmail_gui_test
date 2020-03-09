@@ -54,8 +54,10 @@ public class HomePage extends BasePage {
     }
 
     public AddBoardPopup displayBoardPopup() {
+        webDriverWait.until(ExpectedConditions.visibilityOf(btnBar_plus));
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btnBar_plus));
         btnBar_plus.click();
+        webDriverWait.until(ExpectedConditions.visibilityOf(btn_newBoard));
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btn_newBoard));
         btn_newBoard.click();
         return new AddBoardPopup();

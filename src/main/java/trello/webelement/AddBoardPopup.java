@@ -15,7 +15,7 @@ public class AddBoardPopup extends BasePage {
 
     @Override
     protected void waitUntilPageObjectIsLoaded() {
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(btn_visibility));
+        webDriverWait.until(ExpectedConditions.visibilityOf(btn_moreBackground));
     }
 
     @FindBy(css = ".\\_23NUW98LaZfBpQ")
@@ -24,13 +24,19 @@ public class AddBoardPopup extends BasePage {
     @FindBy(css = ".\\_3UeOvlU6B5KUnS")
     private WebElement btn_createBoard;
 
-    @FindBy(css = "._1Lkx3EjS3wCrs7") //button[@class='subtle-chooser-trigger unstyled-button vis-chooser-trigger']
+    @FindBy(css = "._1Lkx3EjS3wCrs7")
     private WebElement btn_visibility;
 
+    @FindBy(xpath = "//span[@class = \"_2BQG4yPMt5s_hu _3qi72H5bh1Hw2k _1b1jsYFCPYOS8c _3uyeiQJHPeTbZO\"]")
+    private WebElement btn_moreBackground;
+
     public BoardPage create(final Board board, final Set<String> fields) {
+        final String CREATE_BUTTON_ATTRIBUTE = "style";
+        final String CREATE_BUTTON_VALUE = "width: 105px;";
         HashMap<String, Runnable> strategyMap = composeStrategyMap(board);
         fields.forEach(field -> strategyMap.get(field).run());
-//        webDriverWait.until(ExpectedConditions.elementToBeClickable(btn_createBoard));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btn_createBoard));
+        webDriverWait.until(ExpectedConditions.attributeContains(btn_createBoard, CREATE_BUTTON_ATTRIBUTE,CREATE_BUTTON_VALUE));
         btn_createBoard.click();
 
         return new BoardPage();

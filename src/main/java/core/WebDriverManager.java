@@ -26,8 +26,8 @@ public class WebDriverManager {
         String browser = GradleReader.readBrowser();
         this.webDriver = WebDriverFactory.getWebDriver(browser);
         this.webDriver.manage().window().maximize();
-        this.webDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        webDriverWait = new WebDriverWait(webDriver, 20);
+        this.webDriver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
+        webDriverWait = new WebDriverWait(webDriver, 40);
     }
 
     public WebDriver getWebDriver() {

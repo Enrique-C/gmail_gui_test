@@ -20,6 +20,7 @@ public abstract class BaseConfirmPopup extends BasePage {
     @Override
     protected void waitUntilPageObjectIsLoaded() {
         webDriverWait.until(ExpectedConditions.visibilityOf(div_popup));
+        webDriverWait.until(ExpectedConditions.visibilityOf(btn_accept));
     }
 
     @FindBy(css = ".js-confirm")
