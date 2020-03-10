@@ -1,9 +1,10 @@
 Feature: Organization
 
   Scenario: Create an Organization
-    Given I login to the application with "admin" user credentials
+#    Given I login to the application with "admin" user credentials
     When I create a Organization with
       | name        | Test Organization     |
+      | team type   | Otro                  |
       | description | This is a description |
     Then The application should displays a page with the organization name
     And I delete Organization

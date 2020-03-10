@@ -24,6 +24,9 @@ public class Organization {
     // Content name value.
     private String name;
 
+    // Content name value.
+    private String teamType;
+
     // Content description value.
     private String description;
 
@@ -41,6 +44,22 @@ public class Organization {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * Gets teamType value.
+     * @return teamType value.
+     */
+    public String getTeamType() {
+        return teamType;
+    }
+
+    /**
+     * Sets teamType value.
+     * @param teamType value.
+     */
+    public void setTeamType(String teamType) {
+        this.teamType = teamType;
     }
 
     /**
@@ -68,6 +87,7 @@ public class Organization {
         HashMap<String, Runnable> strategyMap = new HashMap<>();
 
         strategyMap.put("name", () -> setName(organizationAttributes.get("name")));
+        strategyMap.put("team type", () -> setTeamType(organizationAttributes.get("team type")));
         strategyMap.put("description", () ->  setDescription(organizationAttributes.get("description")));
 
         return strategyMap;

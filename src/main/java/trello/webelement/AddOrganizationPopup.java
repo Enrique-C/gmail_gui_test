@@ -19,6 +19,9 @@ public class AddOrganizationPopup extends BasePage {
     @FindBy(css = "input._1CLyNodCAa-vQi")
     private WebElement txb_organizationName;
 
+    @FindBy(css = "div[class = \"css-dmzcl _1T1MG_BX1zeaq8\"]")
+    private WebElement listBox_teamType;
+
     @FindBy(css = "textarea._15aIJYNKhrO4vB")
     private WebElement txb_OrganizationDescription;
 
@@ -40,12 +43,17 @@ public class AddOrganizationPopup extends BasePage {
     private HashMap<String, Runnable> composeStrategyMap(Organization organization) {
         HashMap<String, Runnable> strategyMap = new HashMap<>();
         strategyMap.put("name", () -> setName(organization.getName()));
+        strategyMap.put("team type", () -> setTeamType(organization.getTeamType()));
         strategyMap.put("description", () -> setDescription(organization.getDescription()));
         return strategyMap;
     }
 
     private void setName(String name) {
         txb_organizationName.sendKeys(name);
+    }
+
+    private void setTeamType(String teamType){
+
     }
 
     private void setDescription(String description) {

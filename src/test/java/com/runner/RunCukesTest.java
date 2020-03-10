@@ -10,20 +10,32 @@
 
 package com.runner;
 
+import core.WebDriverManager;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import trello.PageTransporter;
+import trello.entity.Board;
+import trello.entity.Organization;
+import trello.page.HomePage;
+import trello.page.LoginPage;
 
 
 public class RunCukesTest extends AbstractTestNGCucumberTests {
 
     @BeforeTest
     public void beforeExecution() {
-        // Todo
+        final String BASE_URI = "https://trello.com/es";
+        HomePage homePage;
+        LoginPage loginPage;
+
+        PageTransporter.goToUrl(BASE_URI);
+        loginPage = new LoginPage();
+        homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
     }
 
     @AfterTest
     public void afterExecution() {
-        // Todo
+        WebDriverManager.getInstance().quitDriver();
     }
 }
