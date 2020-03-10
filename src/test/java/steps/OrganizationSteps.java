@@ -47,7 +47,7 @@ public class OrganizationSteps {
 
     @Then("^The application should displays a page with the organization name$")
     public void theApplicationShouldDisplaysAPageWithNameOrganization() {
-        String actualResult = organizationPage.getText_pageTitle();
+        String actualResult = organizationPage.getText_organizationTitle();
         Assert.assertEquals(organization.getName(), actualResult);
     }
 

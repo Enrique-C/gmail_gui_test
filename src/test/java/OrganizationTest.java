@@ -47,7 +47,7 @@ public class OrganizationTest {
         OrganizationInvitePopup organizationInvitePopup = addOrganizationPopup.create(organization, organizationAttributes.keySet());
         OrganizationPage organizationPage = organizationInvitePopup.clickOnLinkText();
 
-        String actualResult = organizationPage.getText_pageTitle();
+        String actualResult = organizationPage.getText_organizationTitle();
 
         Assert.assertEquals(ORGANIZATION_NAME, actualResult);
 

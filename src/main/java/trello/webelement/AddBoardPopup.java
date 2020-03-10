@@ -57,7 +57,7 @@ public class AddBoardPopup extends BasePage {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btn_visibility));
         btn_visibility.click();
         final String LOCATOR_VISIBILITY_OPTION = "._1ArtKJZLTN_ljN";
-        String auxLocatorBoardVisibility = "//button[span[contains(text(),'%s')] and @class='_2jR0BZMM5cBReR _2_NniNXJ4o9-Nk']"; // spam:contains('%s')
+        String auxLocatorBoardVisibility = "//button[span[contains(text(),'%s')] and @class='_2jR0BZMM5cBReR _2_NniNXJ4o9-Nk']";
 
         webDriverWait.until(ExpectedConditions.visibilityOf(this.webDriver.findElement(By.cssSelector(LOCATOR_VISIBILITY_OPTION))));
         String locatorBoardVisibility = String.format(auxLocatorBoardVisibility, boardVisibility);

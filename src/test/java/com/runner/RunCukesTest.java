@@ -15,10 +15,8 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import trello.PageTransporter;
-import trello.entity.Board;
-import trello.entity.Organization;
-import trello.page.HomePage;
 import trello.page.LoginPage;
+import trello.report.Report;
 
 
 public class RunCukesTest extends AbstractTestNGCucumberTests {
@@ -26,16 +24,15 @@ public class RunCukesTest extends AbstractTestNGCucumberTests {
     @BeforeTest
     public void beforeExecution() {
         final String BASE_URI = "https://trello.com/es";
-        HomePage homePage;
-        LoginPage loginPage;
 
         PageTransporter.goToUrl(BASE_URI);
-        loginPage = new LoginPage();
-        homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
+        LoginPage loginPage = new LoginPage();
+        loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
     }
 
     @AfterTest
     public void afterExecution() {
         WebDriverManager.getInstance().quitDriver();
+        Report.getInstance().generateReport();
     }
 }

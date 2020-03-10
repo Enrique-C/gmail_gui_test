@@ -1,8 +1,10 @@
 package trello.webelement;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import trello.entity.Organization;
 import trello.page.BasePage;
 
@@ -19,7 +21,7 @@ public class AddOrganizationPopup extends BasePage {
     @FindBy(css = "input._1CLyNodCAa-vQi")
     private WebElement txb_organizationName;
 
-    @FindBy(css = "div[class = \"css-dmzcl _1T1MG_BX1zeaq8\"]")
+    @FindBy(css = "div[id=\"teamTypeSelect\"]")
     private WebElement listBox_teamType;
 
     @FindBy(css = "textarea._15aIJYNKhrO4vB")
@@ -53,7 +55,11 @@ public class AddOrganizationPopup extends BasePage {
     }
 
     private void setTeamType(String teamType){
-
+        String xpath_baseOptionToSelect = "//li[contains(.,'%s')]";
+        String xpath_optionSelected = String.format(xpath_baseOptionToSelect, teamType);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(listBox_teamType));
+        listBox_teamType.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath_optionSelected))).click();
     }
 
     private void setDescription(String description) {
