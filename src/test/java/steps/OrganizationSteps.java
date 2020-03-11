@@ -56,9 +56,8 @@ public class OrganizationSteps {
         organizationPage.delete();
     }
 
-    @Then("^I search the Organization and message \"([^\"]*)\" is displayed$")
-    public void iSearchTheOrganizationAndMessageIsDisplayed(String deletionMessage) {
-//        PageTransporter.goToUrl(BASE_URI);
+    @Then("^The application should display a search message \"([^\"]*)\"$")
+    public void searchTheOrganizationAndMessageIsDisplayed(String deletionMessage) {
         SearchPopup searchPopup = homePage.search(organization.getName());
         String actualResult = searchPopup.getMessageSearchResult();
 

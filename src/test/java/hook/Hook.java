@@ -10,7 +10,7 @@ import trello.page.LoginPage;
 public class Hook {
 
     @Before
-    public void tearUp(){
+    public void beginScenario(){
         final String BASE_URI = "https://trello.com/es";
         HomePage homePage;
         LoginPage loginPage;
@@ -21,7 +21,7 @@ public class Hook {
     }
 
     @After
-    public void tearDown() {
+    public void afterScenario() {
         WebDriverManager.getInstance().quitDriver();
     }
 }

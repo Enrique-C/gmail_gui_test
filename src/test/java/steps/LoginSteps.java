@@ -28,8 +28,4 @@ public class LoginSteps {
         loginPage = new LoginPage();
         homePage = loginPage.login("enrique.carrizales@outlook.es", "e7999812CH");
     }
-
-    @Given("^I go to home page$")
-    public void iGoToHomePage() {
-    }
 }
