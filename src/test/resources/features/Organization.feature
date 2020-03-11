@@ -5,7 +5,7 @@ Feature: Organization
       | name        | Test Organization     |
       | team type   | Otro                  |
       | description | This is a description |
-    Then The application should displays a page with the organization name
+    Then The application should display a page with the organization name
     And I delete Organization
 
   Scenario: Delete an Organization

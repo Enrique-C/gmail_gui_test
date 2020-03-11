@@ -7,7 +7,7 @@ import trello.PageTransporter;
 import trello.page.HomePage;
 import trello.page.LoginPage;
 
-public class Hook {
+public class CommonHook {
 
     @Before
     public void beginScenario(){

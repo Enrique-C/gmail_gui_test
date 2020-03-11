@@ -45,7 +45,7 @@ public class OrganizationSteps {
         organizationPage = organizationInvitePopup.clickOnLinkText();
     }
 
-    @Then("^The application should displays a page with the organization name$")
+    @Then("^The application should display a page with the organization name$")
     public void theApplicationShouldDisplaysAPageWithNameOrganization() {
         String actualResult = organizationPage.getText_organizationTitle();
         Assert.assertEquals(organization.getName(), actualResult);
