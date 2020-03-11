@@ -17,21 +17,21 @@ import trello.page.BasePage;
 
 public abstract class BaseConfirmPopup extends BasePage {
 
-    @Override
-    protected void waitUntilPageObjectIsLoaded() {
-        webDriverWait.until(ExpectedConditions.visibilityOf(div_popup));
-        webDriverWait.until(ExpectedConditions.visibilityOf(btn_accept));
-    }
-
     @FindBy(css = ".js-confirm")
     private WebElement btn_accept;
 
     @FindBy(css = "div.no-back")
     private WebElement div_popup;
 
+    @Override
+    protected void waitUntilPageObjectIsLoaded() {
+        webDriverWait.until(ExpectedConditions.visibilityOf(div_popup));
+        webDriverWait.until(ExpectedConditions.visibilityOf(btn_accept));
+    }
+
     protected abstract BasePage confirm();
 
-    protected void clickOnBtnAccept() {
+    public void clickOnBtnAccept() {
         btn_accept.click();
     }
 }

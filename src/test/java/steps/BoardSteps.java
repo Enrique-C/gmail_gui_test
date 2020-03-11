@@ -55,16 +55,20 @@ public class BoardSteps {
     public void closeTheBoard() {
         closeBoardPopup = boardPage.close();
         closeBoardPage = closeBoardPopup.confirm();
+        //closeBoardPopup.confirm();
+        //closeBoardPage = new CloseBoardPage();
     }
 
     @Then("^The application should display a close board message \"([^\"]*)\"$")
     public void theApplicationShouldDisplaysAMessage(String closeMessage) {
+        //closeBoardPage = new CloseBoardPage();
         String message = closeBoardPage.getH1_title();
         Assert.assertEquals(closeMessage, message);
     }
 
     @When("^I delete Board$")
     public void deleteBoard() {
+        //closeBoardPage = new CloseBoardPage();
         deleteBoardPopup = closeBoardPage.delete();
         deleteBoardPage = deleteBoardPopup.confirm();
     }
