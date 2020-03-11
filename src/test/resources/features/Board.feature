@@ -1,7 +1,6 @@
 Feature: Board
 
   Scenario: Create a Board
-    Given I login to the application with "Admmin" user credentials
     When I create a Board with values
       | name       | Test Board |
       | visibility | Privado    |
@@ -10,8 +9,7 @@ Feature: Board
     And I delete Board
 
   Scenario: Close a Board
-    Given I login to the application with "Admin" user credentials
-    And I create a Board with values
+    Given I create a Board with values
       | name       | Test Board |
       | visibility | Privado    |
     When I close Board
@@ -19,8 +17,7 @@ Feature: Board
     And I delete Board
 
   Scenario: Delete a Board
-    Given I login to the application with "Admin" user credentials
-    And I create a Board with values
+    Given I create a Board with values
       | name       | Test Board |
       | visibility | Privado    |
     When I close Board

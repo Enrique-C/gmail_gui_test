@@ -1,6 +1,5 @@
 package trello.page;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -46,7 +45,6 @@ public class HomePage extends BasePage {
     }
 
     public SearchPopup search(String nameElement) {
-        // Crear un validador
         webDriverWait.until(ExpectedConditions.visibilityOfAllElements(txb_search));
         txb_search.sendKeys(nameElement);
         webDriverWait.until(ExpectedConditions.attributeContains(txb_search, "value", nameElement));
@@ -73,6 +71,10 @@ public class HomePage extends BasePage {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(board_random));
         board_random.click();
         return new BoardPage();
+    }
+
+    public String getBeginUrl() {
+        return webDriver.getCurrentUrl();
     }
 
     private void clickOnBtnBarPlus() {

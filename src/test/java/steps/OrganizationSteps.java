@@ -47,7 +47,7 @@ public class OrganizationSteps {
 
     @Then("^The application should displays a page with the organization name$")
     public void theApplicationShouldDisplaysAPageWithNameOrganization() {
-        String actualResult = organizationPage.getText_pageTitle();
+        String actualResult = organizationPage.getText_organizationTitle();
         Assert.assertEquals(organization.getName(), actualResult);
     }
 
@@ -56,9 +56,8 @@ public class OrganizationSteps {
         organizationPage.delete();
     }
 
-    @Then("^I search the Organization and message \"([^\"]*)\" is displayed$")
-    public void iSearchTheOrganizationAndMessageIsDisplayed(String deletionMessage) {
-//        PageTransporter.goToUrl(BASE_URI);
+    @Then("^The application should display a search message \"([^\"]*)\"$")
+    public void searchTheOrganizationAndMessageIsDisplayed(String deletionMessage) {
         SearchPopup searchPopup = homePage.search(organization.getName());
         String actualResult = searchPopup.getMessageSearchResult();
 

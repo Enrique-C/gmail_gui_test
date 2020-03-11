@@ -6,13 +6,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import trello.webelement.DeleteOrganizationPopup;
 
 public class OrganizationPage extends BasePage {
+
     @Override
     protected void waitUntilPageObjectIsLoaded() {
-
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(text_organizationTitle));
     }
 
-    @FindBy(css = "h1.u-inline")
-    private WebElement text_pageTitle;
+    @FindBy(css = "h1._2BCgr50F6ruIZ5")
+    private WebElement text_organizationTitle;
 
     @FindBy(css = ".js-org-account")
     private WebElement menuBtn_configuration;
@@ -20,10 +21,8 @@ public class OrganizationPage extends BasePage {
     @FindBy(css = ".quiet-button")
     private WebElement textLink_delete;
 
-
-
-    public String getText_pageTitle() {
-        return text_pageTitle.getText();
+    public String getText_organizationTitle() {
+        return text_organizationTitle.getText();
     }
 
     public HomePage delete() {

@@ -35,7 +35,6 @@ public class BoardSteps {
         this.organization = organization;
     }
 
-
     @When("^I create a Board with values$")
     public void createABoardWithName(final Map<String, String> boardAttributes) {
         homePage = new HomePage();
